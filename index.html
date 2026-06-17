@@ -1,1 +1,80 @@
-checkinggფრფრფრ„„„„
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tabata's Library — წიგნების ძიება</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="home">
+
+  <header class="site-header">
+    <nav class="nav" aria-label="მთავარი ნავიგაცია">
+      <a class="nav__brand" href="index.html">
+        <img src="assets/logo.svg" alt="Tabata's Library ლოგო" width="28" height="28" />
+        Tabata's Library
+      </a>
+      <ul class="nav__links" id="nav-guest" role="list">
+        <li><a class="nav__link" href="index.html">ძიება</a></li>
+        <li><a class="nav__link" href="adaptations.html">ეკრანიზაციები</a></li>
+        <li><a class="nav__link" href="saved.html">ჩემი ბიბლიოთეკა</a></li>
+        <li><a class="nav__link" href="login.html">შესვლა</a></li>
+      </ul>
+      <div class="nav__user" id="nav-user" hidden>
+        <ul class="nav__user-links" role="list">
+         
+          <li><button class="nav__logout" id="nav-logout" type="button">გასვლა</button></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div class="hero-band">
+    <section class="hero" aria-labelledby="hero-heading">
+      <h1 class="hero__title" id="hero-heading">
+        მოძებნე მილიონობით წიგნი Open Library-ის საშუალებით. <br /><em>შეინახე ფავორიტები პირად თაროზე.</em>
+      </h1>
+
+      <form class="search" id="search-form" role="search" novalidate>
+        <label class="sr-only" for="search-input">ძიება სათაურით, ავტორით ან თემით</label>
+        <input
+          class="search__input"
+          id="search-input"
+          type="search"
+          name="q"
+          placeholder="სათაური, ავტორი ან თემა…"
+          autocomplete="off"
+          minlength="1"
+          required
+          aria-label="წიგნების ძიება"
+        />
+        <button class="btn btn--hero" type="submit">ძიება</button>
+      </form>
+    </section>
+
+    <div class="hero-band__wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 72" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,0 C240,72 480,72 720,36 C960,0 1200,0 1440,36 L1440,72 L0,72 Z" fill="#f7f5f2"/>
+      </svg>
+    </div>
+  </div>
+
+  <main class="container">
+    <section aria-label="ძიების შედეგები">
+      <div class="grid" id="results" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    მონაცემები:
+    <a href="https://openlibrary.org" target="_blank" rel="noopener noreferrer">Open Library</a>
+    · Tabata's Library · 2026
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
