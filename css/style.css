@@ -291,3 +291,192 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 600; line-height: 1.2; 
 
 .hero-band__wave svg { display: block; width: 100%; height: 72px; }
 
+/* ===== login გვერდი ===== */
+
+body.login-page {
+  min-height: 100vh;
+  background: var(--bg);
+  overflow-x: hidden;
+}
+
+.login-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+.login-split__visual {
+  position: relative;
+  background-image: url('../assets/ loginis_foto.jpg');
+  background-size: cover;
+  background-position: center 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.login-split__visual-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,6,2,0.35) 0%, rgba(50,31,12,0.5) 70%, rgba(10,6,2,0.92) 100%);
+}
+
+.login-split__visual-content {
+  position: relative;
+  z-index: 1;
+  padding: 48px 48px 52px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.login-split__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-head);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #f5f0e8;
+  letter-spacing: -0.02em;
+}
+
+.login-split__brand img { filter: brightness(0) invert(1); opacity: 0.9; }
+
+.login-split__quote {
+  margin: 0;
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.55;
+  color: rgba(245,240,232,0.88);
+  border-left: 3px solid #d4b896;
+  padding-left: 20px;
+}
+
+.login-split__quote cite {
+  display: block;
+  margin-top: 14px;
+  font-style: normal;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: #d4b896;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.login-split__back {
+  font-size: 0.82rem;
+  color: rgba(245,240,232,0.55);
+  text-decoration: none;
+  transition: color 0.15s;
+  align-self: flex-start;
+}
+
+.login-split__back:hover { color: #d4b896; }
+
+.login-split__form-panel {
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.login-split__nav {
+  display: flex;
+  gap: 4px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.login-split__nav-link {
+  padding: 7px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+}
+
+.login-split__nav-link:hover,
+.login-split__nav-link--active    { background: var(--accent-soft); color: var(--accent); }
+.login-split__nav-link--active    { font-weight: 600; }
+
+.login-split__main {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 48px;
+  padding: 24px 52px;
+  width: 100%;
+}
+
+.login-welcome,
+#login-form-wrap { flex: 1; min-width: 0; }
+
+#login-form-wrap {
+  border-left: 1px solid var(--border);
+  padding-left: 48px;
+}
+
+.login-split__main:has(#logged-in-panel[hidden]) #login-form-wrap {
+  border-left: none;
+  padding-left: 0;
+}
+
+.login-welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.login-welcome__avatar {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  border: 2px solid var(--accent-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.login-welcome__title {
+  font-family: var(--font-head);
+  font-size: 1.75rem;
+  margin: 0 0 8px;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.login-welcome__sub    { margin: 0 0 24px; color: var(--muted); font-size: 0.9rem; }
+
+.login-welcome__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.login-welcome__primary { padding: 12px 24px; font-size: 0.95rem; }
+
+.login-form__title {
+  font-size: 1.7rem;
+  margin: 0 0 5px;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.login-form__sub { margin: 0 0 18px; color: var(--muted); font-size: 0.9rem; line-height: 1.45; }
+
+.login-split__main .form__row  { margin-bottom: 12px; }
+.login-split__main .form__input { padding: 10px 14px; font-size: 0.9rem; }
+
+.login-form__submit {
+  width: 100%;
+  padding: 11px;
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+
+.form__row--check { margin-top: -2px; margin-bottom: 6px; }
