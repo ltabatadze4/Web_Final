@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>შესვლა — Tabata's Library</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="login" class="login-page">
+
+  <div class="login-split">
+
+    <!-- მარცხენა ვიზუალური პანელი -->
+    <div class="login-split__visual" aria-hidden="true">
+      <div class="login-split__visual-overlay"></div>
+      <div class="login-split__visual-content">
+        <div class="login-split__brand">
+          <img src="assets/logo.svg" alt="" width="40" height="40" />
+          <span>Tabata's Library</span>
+        </div>
+        <blockquote class="login-split__quote">
+          "A reader lives a thousand lives before he dies. The man who never reads lives only one."
+          <cite>— George R.R. Martin</cite>
+        </blockquote>
+        <a class="login-split__back" href="index.html">← საიტზე დაბრუნება</a>
+      </div>
+    </div>
+
+    <!-- მარჯვენა ფორმის პანელი -->
+    <div class="login-split__form-panel">
+
+      <nav class="login-split__nav" aria-label="ნავიგაცია">
+        <a class="login-split__nav-link" href="index.html">ძიება</a>
+        <a class="login-split__nav-link" href="adaptations.html">ეკრანიზაციები</a>
+        <a class="login-split__nav-link" href="saved.html">ჩემი ბიბლიოთეკა</a>
+      </nav>
+
+      <main class="login-split__main" aria-labelledby="login-heading">
+
+        <div class="login-welcome" id="logged-in-panel" hidden>
+          <div class="login-welcome__avatar" aria-hidden="true">
+            <img src="assets/logo.svg" alt="" width="52" height="52" />
+          </div>
+          <h1 class="login-welcome__title">გამარჯობა, <span id="logged-in-name"></span>!</h1>
+          <p class="login-welcome__sub">შენი პირადი ბიბლიოთეკა გელოდება.</p>
+          <div class="login-welcome__actions">
+            <a class="btn login-welcome__primary" href="saved.html">ჩემი ბიბლიოთეკა →</a>
+            <a class="btn btn--ghost" href="index.html">ძიება</a>
+          </div>
+        </div>
+
+        <div id="login-form-wrap">
+          <h1 class="login-form__title" id="login-heading">კეთილი იყოს შენი მობრძანება</h1>
+          <p class="login-form__sub">შედი, რომ გამოიყენო პირადი თარო და ფავორიტები.</p>
+
+          <form class="form" id="login-form" novalidate aria-label="შესვლის ფორმა">
+
+            <div class="form__row">
+              <label class="form__label" for="login-name">სახელი</label>
+              <input class="form__input" id="login-name" name="displayName"
+                     type="text" required minlength="2"
+                     placeholder="მაგ. ლუკა" autocomplete="name" />
+            </div>
+
+            <div class="form__row">
+              <label class="form__label" for="login-email">ელფოსტა</label>
+              <input class="form__input" id="login-email" name="email"
+                     type="email" required
+                     placeholder="you@example.com" autocomplete="email" />
+            </div>
+
+            <div class="form__row">
+              <label class="form__label" for="login-password">პაროლი</label>
+              <input class="form__input" id="login-password" name="password"
+                     type="password" required minlength="6"
+                     placeholder="მინიმუმ 6 სიმბოლო" autocomplete="current-password" />
+            </div>
+
+            <div class="form__row form__row--check">
+              <label class="form__choice">
+                <input type="checkbox" name="remember" id="login-remember" />
+                დამიმახსოვრე
+              </label>
+            </div>
+
+            <button class="btn login-form__submit" type="submit">შესვლა</button>
+            <span class="feedback" id="login-feedback" aria-live="polite"></span>
+          </form>
+        </div>
+
+      </main>
+    </div>
+
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
