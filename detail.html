@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>წიგნის დეტალები — Tabata's Library</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="detail">
+
+  <header class="site-header">
+    <nav class="nav" aria-label="მთავარი ნავიგაცია">
+      <a class="nav__brand" href="index.html">
+        <img src="assets/logo.svg" alt="Tabata's Library ლოგო" width="28" height="28" />
+        Tabata's Library
+      </a>
+      <ul class="nav__links" id="nav-guest" role="list">
+        <li><a class="nav__link" href="index.html">ძიება</a></li>
+        <li><a class="nav__link" href="adaptations.html">ეკრანიზაციები</a></li>
+        <li><a class="nav__link" href="roulette.html">ბედის ბორბალი</a></li>
+        <li><a class="nav__link" href="saved.html">ჩემი ბიბლიოთეკა</a></li>
+        <li><a class="nav__link" href="login.html">შესვლა</a></li>
+      </ul>
+      <div class="nav__user" id="nav-user" hidden>
+        <ul class="nav__user-links" role="list">
+          <li><button class="nav__logout" id="nav-logout" type="button">გასვლა</button></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <article class="detail" aria-label="წიგნის ინფორმაცია">
+
+      <div>
+        <img
+          class="detail__cover"
+          id="detail-cover"
+          src="assets/cover-placeholder.svg"
+          alt="წიგნის ყდა"
+          width="220"
+        />
+      </div>
+
+      <div>
+        <h1 class="detail__title" id="detail-title">იტვირთება…</h1>
+        <p class="detail__author" id="detail-author"></p>
+
+        <div class="shelf-box" aria-label="თაროზე შენახვა">
+          <label class="form__label" for="status-select">სტატუსი:</label>
+          <select class="select" id="status-select">
+            <option value="want">გადასაკითხი მაქვს</option>
+            <option value="reading">ვკითხულობ</option>
+            <option value="read">უკვე წავიკითხე</option>
+          </select>
+          <button class="btn" id="add-btn" type="button">თაროზე დამატება</button>
+          <span class="feedback" id="shelf-feedback" aria-live="polite"></span>
+        </div>
+
+        <div id="free-read" aria-live="polite"></div>
+
+        <p class="detail__desc" id="detail-desc"></p>
+        <ul class="subjects" id="detail-subjects" aria-label="თემები"></ul>
+
+        <a class="back-link" href="index.html">← ძიებაზე დაბრუნება</a>
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    მონაცემები:
+    <a href="https://openlibrary.org" target="_blank" rel="noopener noreferrer">Open Library</a>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
