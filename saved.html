@@ -1,41 +1,103 @@
 <!DOCTYPE html>
 <html lang="ka">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>შენახული — პროექტის სახელი</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ჩემი ბიბლიოთეკა — Tabata's Library</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+<body data-page="saved">
 
-  <header>
-    <nav>
-      <span class="nav__logo">პროექტის სახელი</span>
-      <div class="nav__links">
-        <a href="index.html">ძიება</a>
-        <a href="saved.html">შენახული</a>
-      </div>
-      <div class="nav__actions">
-        <span id="nav-user"></span>
-        <button id="logout-btn" type="button">გასვლა</button>
+  <header class="site-header">
+    <nav class="nav" aria-label="მთავარი ნავიგაცია">
+      <a class="nav__brand" href="index.html">
+        <img src="assets/logo.svg" alt="Tabata's Library ლოგო" width="28" height="28" />
+        Tabata's Library
+      </a>
+      <ul class="nav__links" id="nav-guest" role="list">
+        <li><a class="nav__link" href="index.html">ძიება</a></li>
+        <li><a class="nav__link" href="adaptations.html">ეკრანიზაციები</a></li>
+        <li><a class="nav__link" href="roulette.html">ბედის ბორბალი</a></li>
+        <li><a class="nav__link" href="saved.html">ჩემი ბიბლიოთეკა</a></li>
+        <li><a class="nav__link" href="login.html">შესვლა</a></li>
+      </ul>
+      <div class="nav__user" id="nav-user" hidden>
+        <ul class="nav__user-links" role="list">
+          <li><button class="nav__logout" id="nav-logout" type="button">გასვლა</button></li>
+        </ul>
       </div>
     </nav>
   </header>
 
-  <main>
+  <!-- Hero -->
+  <div class="shelf-hero">
+    <div class="shelf-hero__overlay"></div>
+    <div class="shelf-hero__content">
+      <h1 class="shelf-hero__title" id="shelf-heading">ჩემი ბიბლიოთეკა</h1>
+      <p class="shelf-hero__sub">გამარჯობა, <strong id="shelf-greeting-name"></strong> — აქ არის შენი შენახული წიგნები.</p>
+    </div>
+    <div class="shelf-hero__wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,28 C360,56 1080,0 1440,28 L1440,56 L0,56 Z" fill="#f7f5f2"/>
+      </svg>
+    </div>
+  </div>
 
-    <section>
-      <h2>შენახული ელემენტები</h2>
-      <p id="saved-empty" hidden>ჯერ არაფერია შენახული.</p>
-      <div id="saved-grid"></div>
+  <!-- Stats Band -->
+  <div class="stats-band" aria-label="სტატისტიკა">
+    <div class="container">
+      <div class="stats-band__grid">
+        <div class="stats-band__item">
+          <span class="stats-band__num" id="stat-total">0</span>
+          <span class="stats-band__label">სულ</span>
+        </div>
+        <div class="stats-band__divider" aria-hidden="true"></div>
+        <div class="stats-band__item">
+          <span class="stats-band__num stats-band__num--want" id="stat-want">0</span>
+          <span class="stats-band__label">გადასაკითხი</span>
+        </div>
+        <div class="stats-band__divider" aria-hidden="true"></div>
+        <div class="stats-band__item">
+          <span class="stats-band__num stats-band__num--reading" id="stat-reading">0</span>
+          <span class="stats-band__label">ვკითხულობ</span>
+        </div>
+        <div class="stats-band__divider" aria-hidden="true"></div>
+        <div class="stats-band__item">
+          <span class="stats-band__num stats-band__num--read" id="stat-read">0</span>
+          <span class="stats-band__label">წავიკითხე</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <section aria-labelledby="shelf-heading">
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs" role="group" aria-label="ფილტრი სტატუსით">
+        <button class="filter-tab filter-tab--active" type="button" data-filter="all">ყველა</button>
+        <button class="filter-tab" type="button" data-filter="want">გადასაკითხი</button>
+        <button class="filter-tab" type="button" data-filter="reading">ვკითხულობ</button>
+        <button class="filter-tab" type="button" data-filter="read">წავიკითხე</button>
+      </div>
+
+      <div class="grid" id="saved-grid" aria-live="polite" aria-label="შენახული წიგნები"></div>
+
     </section>
 
   </main>
 
-  <footer>
-    <!-- footer-ის შიგთავსი -->
+  <footer class="site-footer">
+    მონაცემები:
+    <a href="https://openlibrary.org" target="_blank" rel="noopener noreferrer">Open Library</a>
+    · Tabata's Library · 2026
   </footer>
 
-  <script type="module" src="js/saved.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>

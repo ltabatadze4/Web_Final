@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ეკრანიზაციები — Tabata's Library</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="adaptations">
+
+  <header class="site-header">
+    <nav class="nav" aria-label="მთავარი ნავიგაცია">
+      <a class="nav__brand" href="index.html">
+        <img src="assets/logo.svg" alt="Tabata's Library ლოგო" width="28" height="28" />
+        Tabata's Library
+      </a>
+      <ul class="nav__links" id="nav-guest" role="list">
+        <li><a class="nav__link" href="index.html">ძიება</a></li>
+        <li><a class="nav__link" href="adaptations.html">ეკრანიზაციები</a></li>
+        <li><a class="nav__link" href="roulette.html">ბედის ბორბალი</a></li>
+        <li><a class="nav__link" href="saved.html">ჩემი ბიბლიოთეკა</a></li>
+        <li><a class="nav__link" href="login.html">შესვლა</a></li>
+      </ul>
+      <div class="nav__user" id="nav-user" hidden>
+        <ul class="nav__user-links" role="list">
+          <li><button class="nav__logout" id="nav-logout" type="button">გასვლა</button></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div class="adapt-hero">
+    <div class="adapt-hero__overlay"></div>
+    <div class="adapt-hero__content">
+      <h1 class="adapt-hero__title">ეკრანიზაციები</h1>
+      <p class="adapt-hero__sub">შეიყვანე წიგნის სათაური და ნახე შესაბამისი ფილმები აღწერით.</p>
+    </div>
+    <div class="adapt-hero__wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,0 C480,56 960,56 1440,0 L1440,56 L0,56 Z" fill="#f7f5f2"/>
+      </svg>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <section aria-label="ფილმების ძიება">
+      <form class="adapt-search" id="adapt-form">
+        <label class="sr-only" for="adapt-input">წიგნის სათაური</label>
+        <input
+          class="adapt-search__input"
+          id="adapt-input"
+          type="search"
+          name="book"
+          placeholder="მაგ. Pride and Prejudice, Harry Potter…"
+          required
+          minlength="2"
+        />
+        <button class="btn" type="submit">ძიება</button>
+      </form>
+
+      <div class="adapt-picks" id="adapt-picks" hidden aria-label="შენახული წიგნები"></div>
+
+      <div class="films" id="films" aria-live="polite"></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    ფილმები: IMDb API · აღწერები: Wikipedia · Tabata's Library · 2026
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
