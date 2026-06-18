@@ -35,9 +35,10 @@
 }
 
 
-/* ===== reset ===== */
+/* reset */
 
 *, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
 
 body {
   margin: 0;
@@ -86,11 +87,11 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 600; line-height: 1.2; 
 .feedback--err { color: var(--danger); }
 
 
-/* ===== header ===== */
+/* header */
 
 .site-header {
-  background: rgba(255, 255, 255, 0.92);
-  border-bottom: 1px solid var(--border);
+  background: rgba(207, 213, 248, 0.75);
+  border-bottom: 1px solid var(--accent-mid);
   box-shadow: var(--shadow-sm);
   position: sticky;
   top: 0;
@@ -99,7 +100,7 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 600; line-height: 1.2; 
 }
 
 
-/* ===== nav — Flexbox აქ გამოიყენე ===== */
+/* nav — Flexbox აქ გამოიყენე */
 
 .nav {
   display: flex;
@@ -140,7 +141,7 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 600; line-height: 1.2; 
   color: var(--muted);
   font-weight: 500;
   font-size: 0.88rem;
-  transition: background 0.15s, color 0.15s;
+  transition:  0.15s, color 0.15s;
 }
 
 .nav__link:hover      { background: var(--accent-soft); color: var(--accent); }
@@ -173,13 +174,20 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 600; line-height: 1.2; 
   font-size: 0.88rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s;
+  transition:  0.15s, color 0.15s;
 }
 
 .nav__logout:hover { background: var(--danger-soft); color: var(--danger); }
 
+.nav__user-name {
+  padding: 8px 14px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+}
 
-/* ===== hero — მთავარი გვერდი ===== */
+
+/* hero — მთავარი გვერდი */
 
 .hero-band {
   position: relative;
@@ -245,7 +253,7 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 600; line-height: 1.2; 
   backdrop-filter: blur(12px);
   font-family: inherit;
   color: #f5f0e8;
-  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+  transition: border-color 0.15s, box-shadow 0.15s,  0.15s;
 }
 
 .search__input::placeholder { color: rgba(245,240,232,0.52); }
@@ -268,7 +276,7 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 600; line-height: 1.2; 
   font-family: inherit;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.15s, transform 0.12s;
+  transition:  0.15s, transform 0.12s;
   white-space: nowrap;
 }
 
@@ -284,7 +292,7 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 600; line-height: 1.2; 
 .hero-band__wave svg { display: block; width: 100%; height: 72px; }
 
 
-/* ===== ეკრანიზაციების hero ===== */
+/* ეკრანიზაციების hero */
 
 .adapt-hero {
   position: relative;
@@ -325,7 +333,7 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 600; line-height: 1.2; 
 .adapt-hero__wave svg { display: block; width: 100%; height: 56px; }
 
 
-/* ===== ბიბლიოთეკის გვერდის hero ===== */
+/* ბიბლიოთეკის გვერდის hero */
 
 .shelf-hero {
   position: relative;
@@ -371,7 +379,7 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 600; line-height: 1.2; 
 .shelf-hero__wave svg     { display: block; width: 100%; height: 56px; }
 
 
-/* ===== სტატისტიკის ბენდი (ჩემი ბიბლიოთეკა) ===== */
+/* სტატისტიკის ბენდი (ჩემი ბიბლიოთეკა) */
 
 .stats-band {
   background: var(--surface);
@@ -424,7 +432,7 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 600; line-height: 1.2; 
 }
 
 
-/* ===== login გვერდი ===== */
+/* login გვერდი */
 
 body.login-page {
   min-height: 100vh;
@@ -532,7 +540,7 @@ body.login-page {
   color: var(--muted);
   font-size: 0.85rem;
   font-weight: 500;
-  transition: background 0.15s, color 0.15s;
+  transition:  0.15s, color 0.15s;
 }
 
 .login-split__nav-link:hover,
@@ -615,7 +623,7 @@ body.login-page {
 .form__row--check { margin-top: -2px; margin-bottom: 6px; }
 
 
-/* ===== form ===== */
+/* form */
 
 .form {
   background: var(--surface);
@@ -669,6 +677,47 @@ body.login-page {
 
 .select:focus { outline: none; border-color: var(--accent); }
 
+/* ეკრანიზაციების განლაგება */
+.adapt-layout {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  padding: 40px 0;
+}
+
+.adapt-sidebar {
+  flex: 0 0 400px;
+  position: sticky;
+  top: 70px;
+  margin-left: -190px;
+}
+
+.adapt-sidebar__img {
+  
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  object-fit: cover;
+  height: calc(100vh - 120px);
+  max-height: 800px;
+}
+
+.adapt-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 32px;
+}
+
+.adapt-content .adapt-search,
+.adapt-content .adapt-picks,
+.adapt-content .films {
+  width: 100%;
+  max-width: 580px;
+}
+
 /* ეკრანიზაციების ძიების ფორმა */
 .adapt-search {
   display: flex;
@@ -712,17 +761,17 @@ body.login-page {
 .adapt-picks__btn:hover { border-color: var(--accent); color: var(--accent); }
 
 
-/* ===== results grid — CSS Grid აქ გამოიყენე ===== */
+/* results grid — CSS Grid აქ გამოიყენე */
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 22px;
   padding: 28px 0 64px;
 }
 
 
-/* ===== card ===== */
+/* card */
 
 .card {
   background: var(--surface);
@@ -758,11 +807,11 @@ body.login-page {
 .card__year   { font-size: 0.76rem; color: var(--muted); margin-top: 2px; }
 
 
-/* ===== ფილმის ბარათები (ეკრანიზაციები) ===== */
+/* ფილმის ბარათები (ეკრანიზაციები) */
 
 .films {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
   gap: 24px;
   padding: 24px 0 64px;
 }
@@ -862,7 +911,7 @@ body.login-page {
 .film-card__link:hover { text-decoration: underline; }
 
 
-/* ===== წიგნის დეტალების გვერდი ===== */
+/* წიგნის დეტალების გვერდი */
 
 .detail {
   display: grid;
@@ -938,7 +987,7 @@ body.login-page {
 .back-link:hover { color: var(--accent); }
 
 
-/* ===== saved grid — CSS Grid აქ გამოიყენე ===== */
+/* saved grid — CSS Grid აქ გამოიყენე */
 
 .filter-tabs {
   display: flex;
@@ -957,7 +1006,7 @@ body.login-page {
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
-  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  transition: border-color 0.15s,  0.15s, color 0.15s;
 }
 
 .filter-tab:hover            { border-color: var(--accent-mid); color: var(--accent); background: var(--accent-soft); }
@@ -1026,7 +1075,7 @@ body.login-page {
 .shelf-card__actions .select { flex: 1; min-width: 0; }
 
 
-/* ===== buttons ===== */
+/* buttons */
 
 .btn {
   display: inline-flex;
@@ -1071,7 +1120,7 @@ body.login-page {
 .btn--small { padding: 7px 14px; font-size: 0.82rem; }
 
 
-/* ===== ჩატვირთვის და შეცდომის მდგომარეობები ===== */
+/* ჩატვირთვის და შეცდომის მდგომარეობები */
 
 .status {
   grid-column: 1 / -1;
@@ -1102,7 +1151,7 @@ body.login-page {
 .empty__action { margin-top: 16px; display: inline-flex; }
 
 
-/* ===== footer ===== */
+/* footer */
 
 .site-footer {
   border-top: 1px solid var(--border);
@@ -1112,9 +1161,37 @@ body.login-page {
   font-size: 0.83rem;
 }
 
+.me-corner {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  width: 75px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+  border-radius: 16px;
+  border: 3px solid #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.me-corner:hover {
+  transform: scale(1.08) rotate(-3deg);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.28);
+}
+
+.me-corner img {
+  width: 100%;
+  height: auto;
+  border-radius: 13px;
+  display: block;
+}
 
 
-/* ===== ბედის ბორბალი (Roulette) ===== */
+
+
+
+/* ბედის ბორბალი (Roulette) */
 
 .rq-hero {
   position: relative;
@@ -1237,7 +1314,7 @@ body.login-page {
   font-weight: 500;
   color: var(--ink-2);
   background: var(--surface);
-  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  transition: border-color 0.15s,  0.15s, color 0.15s;
   user-select: none;
 }
 
@@ -1379,7 +1456,7 @@ body.login-page {
 
 .rq-another-btn { gap: 8px; }
 
-/* ===== რესპონსიული ===== */
+/* რესპონსიული */
 
 @media (max-width: 860px) {
   .login-split          { grid-template-columns: 1fr; min-height: auto; }
@@ -1391,23 +1468,96 @@ body.login-page {
   #login-form-wrap      { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 28px; }
 }
 
-@media (max-width: 600px) {
-  /* მობილური */
-  .nav              { flex-direction: column; gap: 10px; align-items: stretch; }
-  .nav__links       { justify-content: center; }
-  .nav__user        { flex-direction: column; align-items: center; gap: 8px; }
-  .nav__user-links  { justify-content: center; }
-  .search           { flex-direction: column; }
-  .adapt-search     { flex-direction: column; }
-  .detail           { grid-template-columns: 1fr; }
-  .detail__cover    { max-width: 180px; }
-  .grid             { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-  .films            { grid-template-columns: 1fr; }
-  .hero__title       { font-size: 2rem; }
-  .adapt-hero__title { font-size: 1.8rem; }
-  .shelf-hero__title { font-size: 1.8rem; }
-  .rq-hero__title    { font-size: 1.8rem; }
-  .stats-band__num   { font-size: 1.6rem; }
+/* burger button (მობილური) */
+
+.nav__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.nav__burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.nav--open .nav__burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav--open .nav__burger span:nth-child(2) { opacity: 0; }
+.nav--open .nav__burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 640px) {
+  /* burger ჩნდება, desktop-ზე ჩართული იყო display:none */
+  .nav__burger { display: flex; }
+
+  /* brand მარცხნივ, burger მარჯვნივ — ერთ ხაზზე */
+  .nav        { flex-wrap: wrap; padding: 12px 16px; }
+  .nav__brand { flex: 1; }
+
+  /* nav links და user div — ბნელი სანამ burger-ს არ დააჭერ */
+  .nav__links,
+  .nav__user {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px 0 12px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* nav--open class-ის დამატებისას ჩნდება
+     [hidden] { display:none !important } იცავს guest/user switching-ს */
+  .nav--open .nav__links,
+  .nav--open .nav__user {
+    display: flex;
+  }
+
+  .nav__link,
+  .nav__logout {
+    width: 100%;
+    border-radius: 8px;
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+  }
+
+  .nav__user-links {
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    gap: 0;
+  }
+
+  /* ზოგადი მობილური */
+  .search        { flex-direction: column; }
+  .adapt-search  { flex-direction: column; }
+  .adapt-layout  { flex-direction: column; gap: 24px; padding: 24px 0; }
+  .adapt-sidebar { position: static; flex: none; width: 100%; }
+  .adapt-sidebar__img { max-height: 220px; width: 100%; }
+  .detail        { grid-template-columns: 1fr; }
+  .detail__cover { max-width: 180px; }
+  .grid          { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .films         { grid-template-columns: 1fr; }
+
+  .hero__title       { font-size: 1.75rem; }
+  .adapt-hero__title { font-size: 1.6rem; }
+  .shelf-hero__title { font-size: 1.6rem; }
+  .rq-hero__title    { font-size: 1.6rem; }
+  .stats-band__num   { font-size: 1.5rem; }
+
+  /* iPhone SE */
+  .container  { padding-inline: 14px; }
+  .card__title  { font-size: 0.82rem; }
+  .card__author { font-size: 0.75rem; }
 }
 
 @media (min-width: 1024px) {
