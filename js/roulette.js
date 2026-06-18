@@ -1,7 +1,7 @@
-// roulette.js — ბედის ბორბალი page logic
+// roulette.js - შემთხვევითი წიგნის შეთავაზება
 
-const OL_BASE   = "https://openlibrary.org";
-const OL_COVERS = "https://covers.openlibrary.org/b/id";
+const OL_BASE     = "https://openlibrary.org";
+const OL_COVERS   = "https://covers.openlibrary.org/b/id";
 const PLACEHOLDER = "assets/cover-placeholder.svg";
 
 const SUBJECT_MAP = {
@@ -11,12 +11,12 @@ const SUBJECT_MAP = {
   romance:    "romance",
   historical: "historical_fiction",
   philosophy: "philosophy",
-  adventure:  "adventure_stories",
+  adventure:  "adventure_stories"
 };
 
 const MOOD_SUBJECT_MAP = {
   fun:       "humorous_stories",
-  emotional: "love_stories",
+  emotional: "love_stories"
 };
 
 const GENRE_LABELS = {
@@ -26,64 +26,98 @@ const GENRE_LABELS = {
   romance:    "სიყვარული",
   historical: "ისტორიული",
   philosophy: "ფილოსოფია",
-  adventure:  "სათავგადასავლო",
+  adventure:  "სათავგადასავლო"
 };
 
 function buildSubject(genre, mood) {
-  if (genre !== "any") return SUBJECT_MAP[genre] || "fiction";
+  if (genre !== "any") {
+    return SUBJECT_MAP[genre] || "fiction";
+  }
   return MOOD_SUBJECT_MAP[mood] || "fiction";
 }
 
 async function fetchBooks(subject, era) {
   const offset = Math.floor(Math.random() * 8) * 20;
-  const url = `${OL_BASE}/subjects/${subject}.json?limit=40&offset=${offset}`;
+  const url = OL_BASE + "/subjects/" + subject + ".json?limit=40&offset=" + offset;
+
   const res = await fetch(url);
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  if (!res.ok) throw new Error("HTTP " + res.status);
   const data = await res.json();
 
   let works = data.works || [];
 
-  if (era === "classic") works = works.filter(w => w.first_publish_year && w.first_publish_year <= 1950);
-  if (era === "modern")  works = works.filter(w => w.first_publish_year && w.first_publish_year > 1950);
+  if (era === "classic") {
+    const filtered = [];
+    for (let i = 0; i < works.length; i++) {
+      if (works[i].first_publish_year && works[i].first_publish_year <= 1950) {
+        filtered.push(works[i]);
+      }
+    }
+    works = filtered;
+  }
+  if (era === "modern") {
+    const filtered = [];
+    for (let i = 0; i < works.length; i++) {
+      if (works[i].first_publish_year && works[i].first_publish_year > 1950) {
+        filtered.push(works[i]);
+      }
+    }
+    works = filtered;
+  }
 
-  // Prefer books with covers but don't require them
-  const withCover    = works.filter(w => w.cover_id);
-  const withoutCover = works.filter(w => !w.cover_id);
-  return [...withCover, ...withoutCover];
+  // ჯერ ვაკეთებთ ყდის მქონე წიგნებს
+  const withCover    = [];
+  const withoutCover = [];
+  for (let i = 0; i < works.length; i++) {
+    if (works[i].cover_id) {
+      withCover.push(works[i]);
+    } else {
+      withoutCover.push(works[i]);
+    }
+  }
+
+  return withCover.concat(withoutCover);
 }
 
 async function fetchDescription(workKey) {
   try {
-    const res = await fetch(`${OL_BASE}${workKey}.json`);
+    const res = await fetch(OL_BASE + workKey + ".json");
     if (!res.ok) return null;
     const data = await res.json();
+
     let desc = null;
-    if (typeof data.description === "string") desc = data.description;
-    else if (data.description?.value) desc = data.description.value;
-    if (desc && desc.length > 450) desc = desc.slice(0, 447).trimEnd() + "…";
+    if (typeof data.description === "string") {
+      desc = data.description;
+    } else if (data.description && data.description.value) {
+      desc = data.description.value;
+    }
+
+    if (desc && desc.length > 450) {
+      desc = desc.slice(0, 447) + "…";
+    }
     return desc;
-  } catch {
+  } catch (e) {
     return null;
   }
 }
 
-function coverUrl(coverId) {
-  return `${OL_COVERS}/${coverId}-L.jpg`;
-}
-
 function buildDetailUrl(work) {
-  const author = work.authors?.[0]?.name || "უცნობი ავტორი";
+  let author = "უცნობი ავტორი";
+  if (work.authors && work.authors[0] && work.authors[0].name) {
+    author = work.authors[0].name;
+  }
+
   const params = new URLSearchParams({
     key:    work.key,
     title:  work.title,
-    author,
+    author: author,
     year:   work.first_publish_year || "",
-    cover:  work.cover_id || "",
+    cover:  work.cover_id           || ""
   });
-  return `detail.html?${params.toString()}`;
+  return "detail.html?" + params.toString();
 }
 
-// ── UI references ──────────────────────────────────────────────
+// გვერდის ელემენტები
 const idleEl     = document.getElementById("rq-idle");
 const idleMsgEl  = document.getElementById("rq-idle-msg");
 const loadingEl  = document.getElementById("rq-loading");
@@ -106,40 +140,52 @@ function showLoading() {
 }
 
 function showBook(work, genre) {
-  const author = work.authors?.[0]?.name || "უცნობი ავტორი";
+  let author = "უცნობი ავტორი";
+  if (work.authors && work.authors[0] && work.authors[0].name) {
+    author = work.authors[0].name;
+  }
 
   const coverImg = cardEl.querySelector(".rq-book__cover");
   if (work.cover_id) {
-    coverImg.src = coverUrl(work.cover_id);
-    coverImg.alt = `ყდა — ${work.title}`;
+    coverImg.src = OL_COVERS + "/" + work.cover_id + "-L.jpg";
+    coverImg.alt = "ყდა — " + work.title;
   } else {
     coverImg.src = PLACEHOLDER;
-    coverImg.alt = `ყდის გარეშე — ${work.title}`;
+    coverImg.alt = "ყდის გარეშე — " + work.title;
   }
 
   cardEl.querySelector("#rq-genre-tag").textContent  = GENRE_LABELS[genre] || "წიგნი";
   cardEl.querySelector("#rq-book-title").textContent = work.title;
-  cardEl.querySelector("#rq-book-meta").textContent  =
-    author + (work.first_publish_year ? ` · ${work.first_publish_year}` : "");
-  cardEl.querySelector("#rq-book-desc").textContent  = "აღწერა იტვირთება…";
-  cardEl.querySelector("#rq-detail-link").href       = buildDetailUrl(work);
+
+  let meta = author;
+  if (work.first_publish_year) {
+    meta = meta + " · " + work.first_publish_year;
+  }
+  cardEl.querySelector("#rq-book-meta").textContent = meta;
+  cardEl.querySelector("#rq-book-desc").textContent = "აღწერა იტვირთება…";
+  cardEl.querySelector("#rq-detail-link").href      = buildDetailUrl(work);
 
   idleEl.hidden    = true;
   loadingEl.hidden = true;
   cardEl.hidden    = false;
 
-  // Async description load
-  fetchDescription(work.key).then(desc => {
-    cardEl.querySelector("#rq-book-desc").textContent =
-      desc || "ამ წიგნისთვის აღწერა ვერ მოიძებნა.";
+  fetchDescription(work.key).then(function(desc) {
+    if (desc) {
+      cardEl.querySelector("#rq-book-desc").textContent = desc;
+    } else {
+      cardEl.querySelector("#rq-book-desc").textContent = "ამ წიგნისთვის აღწერა ვერ მოიძებნა.";
+    }
   });
 }
 
-// ── Main spin logic ────────────────────────────────────────────
 async function spin() {
-  const genre = document.querySelector('input[name="genre"]:checked')?.value || "any";
-  const mood  = document.querySelector('input[name="mood"]:checked')?.value  || "any";
-  const era   = document.querySelector('input[name="era"]:checked')?.value   || "any";
+  const genreInput = document.querySelector('input[name="genre"]:checked');
+  const moodInput  = document.querySelector('input[name="mood"]:checked');
+  const eraInput   = document.querySelector('input[name="era"]:checked');
+
+  const genre = genreInput ? genreInput.value : "any";
+  const mood  = moodInput  ? moodInput.value  : "any";
+  const era   = eraInput   ? eraInput.value   : "any";
 
   const subject = buildSubject(genre, mood);
 
@@ -151,13 +197,13 @@ async function spin() {
   try {
     const works = await fetchBooks(subject, era);
 
-    if (!works.length) {
+    if (works.length === 0) {
       showIdle("ამ ფილტრებით წიგნი ვერ მოიძებნა — სცადე სხვა კომბინაცია.");
       return;
     }
 
-    const work = works[Math.floor(Math.random() * works.length)];
-    showBook(work, genre);
+    const randomIndex = Math.floor(Math.random() * works.length);
+    showBook(works[randomIndex], genre);
   } catch (err) {
     console.error(err);
     showIdle("Open Library-ს ვერ მივწვდით. შეამოწმე ინტერნეტ კავშირი.");
