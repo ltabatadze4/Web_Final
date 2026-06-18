@@ -18,15 +18,19 @@
         <img src="assets/logo.svg" alt="Tabata's Library ლოგო" width="28" height="28" />
         Tabata's Library
       </a>
+      <button class="nav__burger" id="nav-burger" type="button" aria-label="მენიუ" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
       <ul class="nav__links" id="nav-guest" role="list">
         <li><a class="nav__link" href="index.html">ძიება</a></li>
         <li><a class="nav__link" href="adaptations.html">ეკრანიზაციები</a></li>
         <li><a class="nav__link" href="roulette.html">ბედის ბორბალი</a></li>
         <li><a class="nav__link" href="saved.html">ჩემი ბიბლიოთეკა</a></li>
-        <li><a class="nav__link" href="login.html">შესვლა</a></li>
+        <li id="nav-login-item"><a class="nav__link" href="login.html">შესვლა</a></li>
       </ul>
       <div class="nav__user" id="nav-user" hidden>
         <ul class="nav__user-links" role="list">
+          <li><span class="nav__user-name" id="nav-user-name"></span></li>
           <li><button class="nav__logout" id="nav-logout" type="button">გასვლა</button></li>
         </ul>
       </div>
@@ -48,32 +52,43 @@
 
   <main class="container">
 
-    <section aria-label="ფილმების ძიება">
-      <form class="adapt-search" id="adapt-form">
-        <label class="sr-only" for="adapt-input">წიგნის სათაური</label>
-        <input
-          class="adapt-search__input"
-          id="adapt-input"
-          type="search"
-          name="book"
-          placeholder="მაგ. Pride and Prejudice, Harry Potter…"
-          required
-          minlength="2"
-        />
-        <button class="btn" type="submit">ძიება</button>
-      </form>
+    <div class="adapt-layout">
 
-      <div class="adapt-picks" id="adapt-picks" hidden aria-label="შენახული წიგნები"></div>
+      <aside class="adapt-sidebar">
+        <img class="adapt-sidebar__img" src="assets/ekranizaciis.jpg" alt="ეკრანიზაციები" />
+      </aside>
 
-      <div class="films" id="films" aria-live="polite"></div>
-    </section>
+      <section class="adapt-content" aria-label="ფილმების ძიება">
+        <form class="adapt-search" id="adapt-form">
+          <label class="sr-only" for="adapt-input">წიგნის სათაური</label>
+          <input
+            class="adapt-search__input"
+            id="adapt-input"
+            type="search"
+            name="book"
+            placeholder="მაგ. Pride and Prejudice, Harry Potter…"
+            required
+            minlength="2"
+          />
+          <button class="btn" type="submit">ძიება</button>
+        </form>
+
+        <div class="adapt-picks" id="adapt-picks" hidden aria-label="შენახული წიგნები"></div>
+
+        <div class="films" id="films" aria-live="polite"></div>
+      </section>
+
+    </div>
 
   </main>
 
   <footer class="site-footer">
-    ფილმები: IMDb API · აღწერები: Wikipedia · Tabata's Library · 2026
+    იმედია საიტი მოგწონთ (მე კეთებისას ძალიან გავერთე) · Tabata's Library · 2026
   </footer>
 
+  
+  <div class="me-corner" title="გამარჯობა! 👋"><img src="assets/me.png" alt="Tabata" /></div>
   <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/adaptations.js"></script>
 </body>
 </html>

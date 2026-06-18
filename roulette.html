@@ -18,15 +18,19 @@
         <img src="assets/logo.svg" alt="Tabata's Library ლოგო" width="28" height="28" />
         Tabata's Library
       </a>
+      <button class="nav__burger" id="nav-burger" type="button" aria-label="მენიუ" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
       <ul class="nav__links" id="nav-guest" role="list">
         <li><a class="nav__link" href="index.html">ძიება</a></li>
         <li><a class="nav__link" href="adaptations.html">ეკრანიზაციები</a></li>
         <li><a class="nav__link" href="roulette.html">ბედის ბორბალი</a></li>
         <li><a class="nav__link" href="saved.html">ჩემი ბიბლიოთეკა</a></li>
-        <li><a class="nav__link" href="login.html">შესვლა</a></li>
+        <li id="nav-login-item"><a class="nav__link" href="login.html">შესვლა</a></li>
       </ul>
       <div class="nav__user" id="nav-user" hidden>
         <ul class="nav__user-links" role="list">
+          <li><span class="nav__user-name" id="nav-user-name"></span></li>
           <li><button class="nav__logout" id="nav-logout" type="button">გასვლა</button></li>
         </ul>
       </div>
@@ -37,7 +41,6 @@
   <div class="rq-hero">
     <div class="rq-hero__overlay" aria-hidden="true"></div>
     <div class="rq-hero__content">
-      <span class="rq-hero__badge">✦ სიახლე</span>
       <h1 class="rq-hero__title">ბედის ბორბალი</h1>
       <p class="rq-hero__sub">უპასუხე 3 კითხვას — ჩვენ შენთვის სრულყოფილ წიგნს ავარჩევთ</p>
     </div>
@@ -72,9 +75,9 @@
           <p class="rq-group__label">რა განწყობა გაქვს?</p>
           <div class="rq-chips" role="group" aria-label="განწყობა">
             <label class="rq-chip"><input type="radio" name="mood" value="any" checked /><span>არაფერი განსაკუთრებული</span></label>
-            <label class="rq-chip"><input type="radio" name="mood" value="fun" /><span>კაი ხასიათძე ვარ</span></label>
-            <label class="rq-chip"><input type="radio" name="mood" value="serious" /><span> ცოტა მოწყენილივარ </span></label>
-            <label class="rq-chip"><input type="radio" name="mood" value="emotional" /><span>ემოციებშივარ</span></label>
+            <label class="rq-chip"><input type="radio" name="mood" value="fun" /><span>კაი ხასიათზე ვარ</span></label>
+            <label class="rq-chip"><input type="radio" name="mood" value="serious" /><span> ცოტა მოწყენილი ვარ </span></label>
+            <label class="rq-chip"><input type="radio" name="mood" value="emotional" /><span>ემოციებში ვარ</span></label>
           </div>
         </div>
 
@@ -99,15 +102,8 @@
       <!-- RIGHT: შედეგი -->
       <section class="rq-result" aria-live="polite" aria-label="არჩეული წიგნი">
 
-        <!-- Idle -->
-        <div class="rq-idle" id="rq-idle">
-          <button class="btn rq-cta-btn" id="rq-spin-btn-r" type="button">
-            <svg class="rq-spin-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 3a9 9 0 1 0 9 9" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/>
-              <path d="M21 3l-3 3 3 3" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            ამომირჩიე წიგნი!
-          </button>
+        <!-- Idle (მხოლოდ შეცდომის შეტყობინებისთვის) -->
+        <div class="rq-idle" id="rq-idle" hidden>
           <p class="rq-idle__msg" id="rq-idle-msg"></p>
         </div>
 
@@ -145,11 +141,11 @@
   </main>
 
   <footer class="site-footer">
-    მონაცემები:
-    <a href="https://openlibrary.org" target="_blank" rel="noopener noreferrer">Open Library</a>
-    · Tabata's Library · 2026
+    იმედია საიტი მოგწონთ (მე კეთებისას ძალიან გავერთე) · Tabata's Library · 2026
   </footer>
 
+  
+  <div class="me-corner" title="გამარჯობა! 👋"><img src="assets/me.png" alt="Tabata" /></div>
   <script type="module" src="js/main.js"></script>
   <script type="module" src="js/roulette.js"></script>
 </body>
