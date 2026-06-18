@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ბედის ბორბალი — Tabata's Library</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="roulette">
+
+  <header class="site-header">
+    <nav class="nav" aria-label="მთავარი ნავიგაცია">
+      <a class="nav__brand" href="index.html">
+        <img src="assets/logo.svg" alt="Tabata's Library ლოგო" width="28" height="28" />
+        Tabata's Library
+      </a>
+      <ul class="nav__links" id="nav-guest" role="list">
+        <li><a class="nav__link" href="index.html">ძიება</a></li>
+        <li><a class="nav__link" href="adaptations.html">ეკრანიზაციები</a></li>
+        <li><a class="nav__link" href="roulette.html">ბედის ბორბალი</a></li>
+        <li><a class="nav__link" href="saved.html">ჩემი ბიბლიოთეკა</a></li>
+        <li><a class="nav__link" href="login.html">შესვლა</a></li>
+      </ul>
+      <div class="nav__user" id="nav-user" hidden>
+        <ul class="nav__user-links" role="list">
+          <li><button class="nav__logout" id="nav-logout" type="button">გასვლა</button></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <div class="rq-hero">
+    <div class="rq-hero__overlay" aria-hidden="true"></div>
+    <div class="rq-hero__content">
+      <span class="rq-hero__badge">✦ სიახლე</span>
+      <h1 class="rq-hero__title">ბედის ბორბალი</h1>
+      <p class="rq-hero__sub">უპასუხე 3 კითხვას — ჩვენ შენთვის სრულყოფილ წიგნს ავარჩევთ</p>
+    </div>
+    <div class="rq-hero__wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,0 C360,56 1080,56 1440,28 L1440,56 L0,56 Z" fill="#f7f5f2"/>
+      </svg>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="rq-layout">
+
+      <!-- LEFT: გამოკითხვა -->
+      <aside class="rq-quiz">
+        <h2 class="rq-quiz__title">შენი გემოვნება</h2>
+
+        <div class="rq-group">
+          <p class="rq-group__label">რა ჟანრი გიყვარს?</p>
+          <div class="rq-chips" role="group" aria-label="ჟანრი">
+            <label class="rq-chip"><input type="radio" name="genre" value="any" checked /><span>ნებისმიერი</span></label>
+            <label class="rq-chip"><input type="radio" name="genre" value="fantasy" /><span>ფანტასტიკა</span></label>
+            <label class="rq-chip"><input type="radio" name="genre" value="mystery" /><span>კრიმინალი</span></label>
+            <label class="rq-chip"><input type="radio" name="genre" value="romance" /><span>სასიყვარულო</span></label>
+            <label class="rq-chip"><input type="radio" name="genre" value="historical" /><span>ისტორიული</span></label>
+            <label class="rq-chip"><input type="radio" name="genre" value="philosophy" /><span>ფილოსოფია</span></label>
+            <label class="rq-chip"><input type="radio" name="genre" value="adventure" /><span>სათავგადასავლო</span></label>
+          </div>
+        </div>
+
+        <div class="rq-group">
+          <p class="rq-group__label">რა განწყობა გაქვს?</p>
+          <div class="rq-chips" role="group" aria-label="განწყობა">
+            <label class="rq-chip"><input type="radio" name="mood" value="any" checked /><span>არაფერი განსაკუთრებული</span></label>
+            <label class="rq-chip"><input type="radio" name="mood" value="fun" /><span>კაი ხასიათძე ვარ</span></label>
+            <label class="rq-chip"><input type="radio" name="mood" value="serious" /><span> ცოტა მოწყენილივარ </span></label>
+            <label class="rq-chip"><input type="radio" name="mood" value="emotional" /><span>ემოციებშივარ</span></label>
+          </div>
+        </div>
+
+        <div class="rq-group">
+          <p class="rq-group__label">რომელი ეპოქა?</p>
+          <div class="rq-chips" role="group" aria-label="ეპოქა">
+            <label class="rq-chip"><input type="radio" name="era" value="any" checked /><span>ნებისმიერი</span></label>
+            <label class="rq-chip"><input type="radio" name="era" value="classic" /><span>კლასიკური (–1950)</span></label>
+            <label class="rq-chip"><input type="radio" name="era" value="modern" /><span>თანამედროვე (1950+)</span></label>
+          </div>
+        </div>
+
+        <button class="btn rq-spin-btn" id="rq-spin-btn" type="button">
+          <svg class="rq-spin-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3a9 9 0 1 0 9 9" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/>
+            <path d="M21 3l-3 3 3 3" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          ამომირჩიე წიგნი!
+        </button>
+      </aside>
+
+      <!-- RIGHT: შედეგი -->
+      <section class="rq-result" aria-live="polite" aria-label="არჩეული წიგნი">
+
+        <!-- Idle -->
+        <div class="rq-idle" id="rq-idle">
+          <button class="btn rq-cta-btn" id="rq-spin-btn-r" type="button">
+            <svg class="rq-spin-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3a9 9 0 1 0 9 9" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/>
+              <path d="M21 3l-3 3 3 3" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            ამომირჩიე წიგნი!
+          </button>
+          <p class="rq-idle__msg" id="rq-idle-msg"></p>
+        </div>
+
+        <!-- Loading -->
+        <div class="rq-loading" id="rq-loading" hidden>
+          <span class="spinner rq-loading__spinner"></span>
+          <p class="rq-loading__text">ვეძებ…</p>
+        </div>
+
+        <!-- Book card -->
+        <div class="rq-book" id="rq-card" hidden>
+          <div class="rq-book__cover-wrap">
+            <img class="rq-book__cover" src="" alt="" loading="lazy" />
+          </div>
+          <div class="rq-book__body">
+            <p class="rq-book__genre-tag" id="rq-genre-tag"></p>
+            <h3 class="rq-book__title" id="rq-book-title"></h3>
+            <p class="rq-book__meta" id="rq-book-meta"></p>
+            <p class="rq-book__desc" id="rq-book-desc"></p>
+            <div class="rq-book__actions">
+              <button class="btn rq-another-btn" id="rq-another-btn" type="button">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 3a9 9 0 1 0 9 9" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/>
+                  <path d="M21 3l-3 3 3 3" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                სხვა წიგნი
+              </button>
+              <a class="btn btn--ghost" id="rq-detail-link" href="#">დეტალების ნახვა →</a>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    მონაცემები:
+    <a href="https://openlibrary.org" target="_blank" rel="noopener noreferrer">Open Library</a>
+    · Tabata's Library · 2026
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/roulette.js"></script>
+</body>
+</html>
