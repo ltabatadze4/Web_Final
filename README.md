@@ -160,5 +160,3 @@ if (PAGE_MODULES[page]) import(PAGE_MODULES[page]);
 ამის წყალობით, მხოლოდ საჭირო გვერდის კოდი იტვირთება.
 
 ---
-
-**Tabata's Library** · 2026 · [l_kalatozishvili@cu.edu.ge](mailto:l_tabatadze4@cu.edu.ge)
