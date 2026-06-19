@@ -22,41 +22,42 @@
         <span></span><span></span><span></span>
       </button>
       <ul class="nav__links" id="nav-guest" role="list">
-        <li><a class="nav__link" href="index.html">ძიება</a></li>
-        <li><a class="nav__link" href="adaptations.html">ეკრანიზაციები</a></li>
-        <li><a class="nav__link" href="roulette.html">ბედის ბორბალი</a></li>
-        <li><a class="nav__link" href="saved.html">ჩემი ბიბლიოთეკა</a></li>
-        <li id="nav-login-item"><a class="nav__link" href="login.html">შესვლა</a></li>
+        <li><a class="nav__link" href="index.html" data-i18n="nav.search">ძიება</a></li>
+        <li><a class="nav__link" href="adaptations.html" data-i18n="nav.adaptations">ეკრანიზაციები</a></li>
+        <li><a class="nav__link" href="roulette.html" data-i18n="nav.roulette">ბედის ბორბალი</a></li>
+        <li><a class="nav__link" href="saved.html" data-i18n="nav.library">ჩემი ბიბლიოთეკა</a></li>
+        <li id="nav-login-item"><a class="nav__link" href="login.html" data-i18n="nav.login">შესვლა</a></li>
       </ul>
       <div class="nav__user" id="nav-user" hidden>
         <ul class="nav__user-links" role="list">
           <li><span class="nav__user-name" id="nav-user-name"></span></li>
-          <li><button class="nav__logout" id="nav-logout" type="button">გასვლა</button></li>
+          <li><button class="nav__logout" id="nav-logout" type="button" data-i18n="nav.logout">გასვლა</button></li>
         </ul>
       </div>
+      <button class="nav__lang" id="lang-toggle" type="button" aria-label="Switch language">EN</button>
     </nav>
   </header>
 
   <div class="hero-band">
     <section class="hero" aria-labelledby="hero-heading">
-      <h1 class="hero__title" id="hero-heading">
+      <h1 class="hero__title" id="hero-heading" data-i18n-html="home.hero">
         მოძებნე მილიონობით წიგნი Open Library-ის საშუალებით. <br /><em>შეინახე ფავორიტები პირად თაროზე.</em>
       </h1>
 
       <form class="search" id="search-form" role="search" novalidate>
-        <label class="sr-only" for="search-input">ძიება სათაურით, ავტორით ან თემით</label>
+        <label class="sr-only" for="search-input" data-i18n="home.search.label">ძიება სათაურით, ავტორით ან თემით</label>
         <input
           class="search__input"
           id="search-input"
           type="search"
           name="q"
           placeholder="სათაური, ავტორი ან თემა…"
+          data-i18n-placeholder="home.search.placeholder"
           autocomplete="off"
           minlength="1"
           required
-          aria-label="წიგნების ძიება"
         />
-        <button class="btn btn--hero" type="submit">ძიება</button>
+        <button class="btn btn--hero" type="submit" data-i18n="home.search.btn">ძიება</button>
       </form>
     </section>
 
@@ -73,12 +74,12 @@
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer" data-i18n="footer">
     იმედია საიტი მოგწონთ (მე კეთებისას ძალიან გავერთე) · Tabata's Library · 2026
   </footer>
 
-  
-  <div class="me-corner" title="გამარჯობა! 👋"><img src="assets/me.png" alt="Tabata" /></div>
+
+  <div class="me-corner" data-i18n-title="me.corner" title="გამარჯობა! 👋"><img src="assets/me.png" alt="Tabata" /></div>
   <script type="module" src="js/main.js"></script>
   <script type="module" src="js/home.js"></script>
 </body>

@@ -26,7 +26,7 @@
           "A reader lives a thousand lives before he dies. The man who never reads lives only one."
           <cite>— George R.R. Martin</cite>
         </blockquote>
-        <a class="login-split__back" href="index.html">← საიტზე დაბრუნება</a>
+        <a class="login-split__back" href="index.html" data-i18n="login.back">← საიტზე დაბრუნება</a>
       </div>
     </div>
 
@@ -34,10 +34,11 @@
     <div class="login-split__form-panel">
 
       <nav class="login-split__nav" aria-label="ნავიგაცია">
-        <a class="login-split__nav-link" href="index.html">ძიება</a>
-        <a class="login-split__nav-link" href="adaptations.html">ეკრანიზაციები</a>
-        <a class="nav__link" href="roulette.html">ბედის ბორბალი</a>
-        <a class="login-split__nav-link" href="saved.html">ჩემი ბიბლიოთეკა</a>
+        <a class="login-split__nav-link" href="index.html" data-i18n="nav.search">ძიება</a>
+        <a class="login-split__nav-link" href="adaptations.html" data-i18n="nav.adaptations">ეკრანიზაციები</a>
+        <a class="nav__link" href="roulette.html" data-i18n="nav.roulette">ბედის ბორბალი</a>
+        <a class="login-split__nav-link" href="saved.html" data-i18n="nav.library">ჩემი ბიბლიოთეკა</a>
+        <button class="nav__lang" id="lang-toggle" type="button" aria-label="Switch language">EN</button>
       </nav>
 
       <main class="login-split__main" aria-labelledby="login-heading">
@@ -47,48 +48,48 @@
             <img src="assets/logo.svg" alt="" width="52" height="52" />
           </div>
           <h1 class="login-welcome__title">გამარჯობა, <span id="logged-in-name"></span>!</h1>
-          <p class="login-welcome__sub">შენი პირადი ბიბლიოთეკა გელოდება.</p>
+          <p class="login-welcome__sub" data-i18n="login.welcome.sub">შენი პირადი ბიბლიოთეკა გელოდება.</p>
           <div class="login-welcome__actions">
-            <a class="btn login-welcome__primary" href="saved.html">ჩემი ბიბლიოთეკა →</a>
-            <a class="btn btn--ghost" href="index.html">ძიება</a>
+            <a class="btn login-welcome__primary" href="saved.html" data-i18n="login.welcome.library">ჩემი ბიბლიოთეკა →</a>
+            <a class="btn btn--ghost" href="index.html" data-i18n="login.welcome.search">ძიება</a>
           </div>
         </div>
 
         <div id="login-form-wrap">
-          <h1 class="login-form__title" id="login-heading">კეთილი იყოს შენი მობრძანება</h1>
-          <p class="login-form__sub">შედი, რომ გამოიყენო პირადი თარო და ფავორიტები.</p>
+          <h1 class="login-form__title" id="login-heading" data-i18n="login.heading">კეთილი იყოს შენი მობრძანება</h1>
+          <p class="login-form__sub" data-i18n="login.sub">შედი, რომ გამოიყენო პირადი თარო და ფავორიტები.</p>
 
           <form class="form" id="login-form" novalidate aria-label="შესვლის ფორმა">
 
             <div class="form__row">
-              <label class="form__label" for="login-name">სახელი</label>
+              <label class="form__label" for="login-name" data-i18n="login.name.label">სახელი</label>
               <input class="form__input" id="login-name" name="displayName"
                      type="text" required minlength="2"
-                     placeholder="მაგ. ლუკა" autocomplete="name" />
+                     placeholder="მაგ. ლუკა" data-i18n-placeholder="login.name.placeholder" autocomplete="name" />
             </div>
 
             <div class="form__row">
-              <label class="form__label" for="login-email">ელფოსტა</label>
+              <label class="form__label" for="login-email" data-i18n="login.email.label">ელფოსტა</label>
               <input class="form__input" id="login-email" name="email"
                      type="email" required
                      placeholder="you@example.com" autocomplete="email" />
             </div>
 
             <div class="form__row">
-              <label class="form__label" for="login-password">პაროლი</label>
+              <label class="form__label" for="login-password" data-i18n="login.password.label">პაროლი</label>
               <input class="form__input" id="login-password" name="password"
                      type="password" required minlength="6"
-                     placeholder="მინიმუმ 6 სიმბოლო" autocomplete="current-password" />
+                     placeholder="მინიმუმ 6 სიმბოლო" data-i18n-placeholder="login.password.placeholder" autocomplete="current-password" />
             </div>
 
             <div class="form__row form__row--check">
               <label class="form__choice">
                 <input type="checkbox" name="remember" id="login-remember" />
-                დამიმახსოვრე
+                <span data-i18n="login.remember">დამიმახსოვრე</span>
               </label>
             </div>
 
-            <button class="btn login-form__submit" type="submit">შესვლა</button>
+            <button class="btn login-form__submit" type="submit" data-i18n="login.submit">შესვლა</button>
             <span class="feedback" id="login-feedback" aria-live="polite"></span>
           </form>
         </div>

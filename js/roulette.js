@@ -1,22 +1,28 @@
 // roulette.js - შემთხვევითი წიგნის შეთავაზება
 
+import { t } from "./i18n.js";
+
 const OL     = "https://openlibrary.org";
 const COVERS = "https://covers.openlibrary.org/b/id";
 
-const GENRES = {
-  any:        { subject: "fiction",                    label: "წიგნი" },
-  fantasy:    { subject: "fantasy",                    label: "ფანტასტიკა" },
-  mystery:    { subject: "mystery_and_detective_stories", label: "კრიმინალი" },
-  romance:    { subject: "romance",                    label: "სიყვარული" },
-  historical: { subject: "historical_fiction",         label: "ისტორიული" },
-  philosophy: { subject: "philosophy",                 label: "ფილოსოფია" },
-  adventure:  { subject: "adventure_stories",          label: "სათავგადასავლო" }
+const GENRE_SUBJECTS = {
+  any:        "fiction",
+  fantasy:    "fantasy",
+  mystery:    "mystery_and_detective_stories",
+  romance:    "romance",
+  historical: "historical_fiction",
+  philosophy: "philosophy",
+  adventure:  "adventure_stories",
 };
+
+function genreLabel(genre) {
+  return genre === "any" ? t("js.roulette.book") : (t("roulette.genre." + genre) || genre);
+}
 
 const MOOD_SUBJECT = { fun: "humorous_stories", emotional: "love_stories" };
 
 async function fetchBooks(genre, mood, era) {
-  let subject = GENRES[genre] ? GENRES[genre].subject : "fiction";
+  let subject = GENRE_SUBJECTS[genre] || "fiction";
   if (genre === "any" && MOOD_SUBJECT[mood]) subject = MOOD_SUBJECT[mood];
 
   const offset = Math.floor(Math.random() * 8) * 20;
@@ -62,22 +68,17 @@ function showLoading() {
 }
 
 function showBook(work, genre) {
-  let author = "უცნობი ავტორი";
+  let author = t("js.roulette.unknown.author");
   if (work.authors && work.authors[0]) author = work.authors[0].name || author;
 
   const coverImg = cardEl.querySelector(".rq-book__cover");
-  if (work.cover_id) {
-    coverImg.src = COVERS + "/" + work.cover_id + "-L.jpg";
-    coverImg.alt = "ყდა — " + work.title;
-  } else {
-    coverImg.src = "assets/cover-placeholder.svg";
-    coverImg.alt = work.title;
-  }
+  coverImg.src = work.cover_id ? COVERS + "/" + work.cover_id + "-L.jpg" : "assets/cover-placeholder.svg";
+  coverImg.alt = work.title;
 
-  cardEl.querySelector("#rq-genre-tag").textContent  = GENRES[genre] ? GENRES[genre].label : "წიგნი";
+  cardEl.querySelector("#rq-genre-tag").textContent  = genreLabel(genre);
   cardEl.querySelector("#rq-book-title").textContent = work.title;
   cardEl.querySelector("#rq-book-meta").textContent  = author + (work.first_publish_year ? " · " + work.first_publish_year : "");
-  cardEl.querySelector("#rq-book-desc").textContent  = "იტვირთება…";
+  cardEl.querySelector("#rq-book-desc").textContent  = t("js.roulette.loading.desc");
   cardEl.querySelector("#rq-detail-link").href = "detail.html?" + new URLSearchParams({
     key: work.key, title: work.title, author: author,
     year: work.first_publish_year || "", cover: work.cover_id || ""
@@ -86,7 +87,7 @@ function showBook(work, genre) {
   idleEl.hidden = true; loadingEl.hidden = true; cardEl.hidden = false;
 
   fetchDescription(work.key).then(function(desc) {
-    cardEl.querySelector("#rq-book-desc").textContent = desc || "ამ წიგნისთვის აღწერა ვერ მოიძებნა.";
+    cardEl.querySelector("#rq-book-desc").textContent = desc || t("js.roulette.no.desc");
   });
 }
 
@@ -106,13 +107,13 @@ async function spin() {
   try {
     const works = await fetchBooks(genre, mood, era);
     if (works.length === 0) {
-      showIdle("ამ ფილტრებით წიგნი ვერ მოიძებნა — სცადე სხვა კომბინაცია.");
+      showIdle(t("js.roulette.no.books"));
       return;
     }
     showBook(works[Math.floor(Math.random() * works.length)], genre);
   } catch (err) {
     console.error(err);
-    showIdle("Open Library-ს ვერ მივწვდით. შეამოწმე ინტერნეტ კავშირი.");
+    showIdle(t("js.roulette.network"));
   } finally {
     spinBtn.disabled = false;
     spinBtn.classList.remove("rq-spin-btn--loading");

@@ -1,6 +1,7 @@
 // main.js - nav, auth და burger ყველა გვერდისთვის
 
 import { getAuth, clearAuth } from "./storage.js";
+import { getLang, setLang } from "./i18n.js";
 
 const page      = document.body.dataset.page;
 const guestNav  = document.querySelector("#nav-guest");
@@ -70,5 +71,13 @@ if (burger && nav) {
       nav.classList.remove("nav--open");
       burger.setAttribute("aria-expanded", "false");
     });
+  });
+}
+
+// ენის გადამრთველი
+const langToggle = document.getElementById("lang-toggle");
+if (langToggle) {
+  langToggle.addEventListener("click", function() {
+    setLang(getLang() === "ka" ? "en" : "ka");
   });
 }

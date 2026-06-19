@@ -22,18 +22,19 @@
         <span></span><span></span><span></span>
       </button>
       <ul class="nav__links" id="nav-guest" role="list">
-        <li><a class="nav__link" href="index.html">ძიება</a></li>
-        <li><a class="nav__link" href="adaptations.html">ეკრანიზაციები</a></li>
-        <li><a class="nav__link" href="roulette.html">ბედის ბორბალი</a></li>
-        <li><a class="nav__link" href="saved.html">ჩემი ბიბლიოთეკა</a></li>
-        <li id="nav-login-item"><a class="nav__link" href="login.html">შესვლა</a></li>
+        <li><a class="nav__link" href="index.html" data-i18n="nav.search">ძიება</a></li>
+        <li><a class="nav__link" href="adaptations.html" data-i18n="nav.adaptations">ეკრანიზაციები</a></li>
+        <li><a class="nav__link" href="roulette.html" data-i18n="nav.roulette">ბედის ბორბალი</a></li>
+        <li><a class="nav__link" href="saved.html" data-i18n="nav.library">ჩემი ბიბლიოთეკა</a></li>
+        <li id="nav-login-item"><a class="nav__link" href="login.html" data-i18n="nav.login">შესვლა</a></li>
       </ul>
       <div class="nav__user" id="nav-user" hidden>
         <ul class="nav__user-links" role="list">
           <li><span class="nav__user-name" id="nav-user-name"></span></li>
-          <li><button class="nav__logout" id="nav-logout" type="button">გასვლა</button></li>
+          <li><button class="nav__logout" id="nav-logout" type="button" data-i18n="nav.logout">გასვლა</button></li>
         </ul>
       </div>
+      <button class="nav__lang" id="lang-toggle" type="button" aria-label="Switch language">EN</button>
     </nav>
     
   </header>
@@ -41,8 +42,8 @@
   <div class="adapt-hero">
     <div class="adapt-hero__overlay"></div>
     <div class="adapt-hero__content">
-      <h1 class="adapt-hero__title">ეკრანიზაციები</h1>
-      <p class="adapt-hero__sub">შეიყვანე წიგნის სათაური და ნახე შესაბამისი ფილმები აღწერით.</p>
+      <h1 class="adapt-hero__title" data-i18n="adapt.hero.title">ეკრანიზაციები</h1>
+      <p class="adapt-hero__sub" data-i18n="adapt.hero.sub">შეიყვანე წიგნის სათაური და ნახე შესაბამისი ფილმები აღწერით.</p>
     </div>
     <div class="adapt-hero__wave" aria-hidden="true">
       <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -68,10 +69,11 @@
             type="search"
             name="book"
             placeholder="მაგ. Pride and Prejudice, Harry Potter…"
+            data-i18n-placeholder="adapt.search.placeholder"
             required
             minlength="2"
           />
-          <button class="btn" type="submit">ძიება</button>
+          <button class="btn" type="submit" data-i18n="adapt.search.btn">ძიება</button>
         </form>
 
         <div class="adapt-picks" id="adapt-picks" hidden aria-label="შენახული წიგნები"></div>
@@ -83,12 +85,12 @@
 
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer" data-i18n="footer">
     იმედია საიტი მოგწონთ (მე კეთებისას ძალიან გავერთე) · Tabata's Library · 2026
   </footer>
 
-  
-  <div class="me-corner" title="გამარჯობა! 👋"><img src="assets/me.png" alt="Tabata" /></div>
+
+  <div class="me-corner" data-i18n-title="me.corner" title="გამარჯობა! 👋"><img src="assets/me.png" alt="Tabata" /></div>
   <script type="module" src="js/main.js"></script>
   <script type="module" src="js/adaptations.js"></script>
 </body>

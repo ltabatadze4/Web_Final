@@ -1,6 +1,7 @@
 // ui.js - წიგნების ბარათების HTML-ში გამოტანა
 
 import { coverUrl } from "./api.js";
+import { t } from "./i18n.js";
 
 const PLACEHOLDER = "assets/cover-placeholder.svg";
 
@@ -15,10 +16,10 @@ function buildCard(book, onOpen) {
   const url = coverUrl(book.coverId);
   if (url) {
     img.src = url;
-    img.alt = "ყდა — " + book.title;
+    img.alt = book.title;
   } else {
     img.src = PLACEHOLDER;
-    img.alt = "ყდის გარეშე — " + book.title;
+    img.alt = book.title;
   }
 
   const body = document.createElement("div");
@@ -34,11 +35,7 @@ function buildCard(book, onOpen) {
 
   const year = document.createElement("span");
   year.className = "card__year";
-  if (book.year) {
-    year.textContent = book.year;
-  } else {
-    year.textContent = "წელი უცნობია";
-  }
+  year.textContent = book.year || t("js.year.unknown");
 
   body.appendChild(title);
   body.appendChild(author);
@@ -60,7 +57,7 @@ export function renderBooks(container, books, onOpen) {
   if (books.length === 0) {
     const p = document.createElement("p");
     p.className   = "empty";
-    p.textContent = "წიგნები ვერ მოიძებნა. სცადე სხვა საძიებო სიტყვა.";
+    p.textContent = t("js.no.books");
     container.appendChild(p);
     return;
   }

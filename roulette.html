@@ -22,18 +22,19 @@
         <span></span><span></span><span></span>
       </button>
       <ul class="nav__links" id="nav-guest" role="list">
-        <li><a class="nav__link" href="index.html">ძიება</a></li>
-        <li><a class="nav__link" href="adaptations.html">ეკრანიზაციები</a></li>
-        <li><a class="nav__link" href="roulette.html">ბედის ბორბალი</a></li>
-        <li><a class="nav__link" href="saved.html">ჩემი ბიბლიოთეკა</a></li>
-        <li id="nav-login-item"><a class="nav__link" href="login.html">შესვლა</a></li>
+        <li><a class="nav__link" href="index.html" data-i18n="nav.search">ძიება</a></li>
+        <li><a class="nav__link" href="adaptations.html" data-i18n="nav.adaptations">ეკრანიზაციები</a></li>
+        <li><a class="nav__link" href="roulette.html" data-i18n="nav.roulette">ბედის ბორბალი</a></li>
+        <li><a class="nav__link" href="saved.html" data-i18n="nav.library">ჩემი ბიბლიოთეკა</a></li>
+        <li id="nav-login-item"><a class="nav__link" href="login.html" data-i18n="nav.login">შესვლა</a></li>
       </ul>
       <div class="nav__user" id="nav-user" hidden>
         <ul class="nav__user-links" role="list">
           <li><span class="nav__user-name" id="nav-user-name"></span></li>
-          <li><button class="nav__logout" id="nav-logout" type="button">გასვლა</button></li>
+          <li><button class="nav__logout" id="nav-logout" type="button" data-i18n="nav.logout">გასვლა</button></li>
         </ul>
       </div>
+      <button class="nav__lang" id="lang-toggle" type="button" aria-label="Switch language">EN</button>
     </nav>
   </header>
 
@@ -41,8 +42,8 @@
   <div class="rq-hero">
     <div class="rq-hero__overlay" aria-hidden="true"></div>
     <div class="rq-hero__content">
-      <h1 class="rq-hero__title">ბედის ბორბალი</h1>
-      <p class="rq-hero__sub">უპასუხე 3 კითხვას — ჩვენ შენთვის სრულყოფილ წიგნს ავარჩევთ</p>
+      <h1 class="rq-hero__title" data-i18n="roulette.hero.title">ბედის ბორბალი</h1>
+      <p class="rq-hero__sub" data-i18n="roulette.hero.sub">უპასუხე 3 კითხვას — ჩვენ შენთვის სრულყოფილ წიგნს ავარჩევთ</p>
     </div>
     <div class="rq-hero__wave" aria-hidden="true">
       <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -56,37 +57,37 @@
 
       <!-- LEFT: გამოკითხვა -->
       <aside class="rq-quiz">
-        <h2 class="rq-quiz__title">შენი გემოვნება</h2>
+        <h2 class="rq-quiz__title" data-i18n="roulette.quiz.title">შენი გემოვნება</h2>
 
         <div class="rq-group">
-          <p class="rq-group__label">რა ჟანრი გიყვარს?</p>
+          <p class="rq-group__label" data-i18n="roulette.genre.label">რა ჟანრი გიყვარს?</p>
           <div class="rq-chips" role="group" aria-label="ჟანრი">
-            <label class="rq-chip"><input type="radio" name="genre" value="any" checked /><span>ნებისმიერი</span></label>
-            <label class="rq-chip"><input type="radio" name="genre" value="fantasy" /><span>ფანტასტიკა</span></label>
-            <label class="rq-chip"><input type="radio" name="genre" value="mystery" /><span>კრიმინალი</span></label>
-            <label class="rq-chip"><input type="radio" name="genre" value="romance" /><span>სასიყვარულო</span></label>
-            <label class="rq-chip"><input type="radio" name="genre" value="historical" /><span>ისტორიული</span></label>
-            <label class="rq-chip"><input type="radio" name="genre" value="philosophy" /><span>ფილოსოფია</span></label>
-            <label class="rq-chip"><input type="radio" name="genre" value="adventure" /><span>სათავგადასავლო</span></label>
+            <label class="rq-chip"><input type="radio" name="genre" value="any" checked /><span data-i18n="roulette.genre.any">ნებისმიერი</span></label>
+            <label class="rq-chip"><input type="radio" name="genre" value="fantasy" /><span data-i18n="roulette.genre.fantasy">ფანტასტიკა</span></label>
+            <label class="rq-chip"><input type="radio" name="genre" value="mystery" /><span data-i18n="roulette.genre.mystery">კრიმინალი</span></label>
+            <label class="rq-chip"><input type="radio" name="genre" value="romance" /><span data-i18n="roulette.genre.romance">სასიყვარულო</span></label>
+            <label class="rq-chip"><input type="radio" name="genre" value="historical" /><span data-i18n="roulette.genre.historical">ისტორიული</span></label>
+            <label class="rq-chip"><input type="radio" name="genre" value="philosophy" /><span data-i18n="roulette.genre.philosophy">ფილოსოფია</span></label>
+            <label class="rq-chip"><input type="radio" name="genre" value="adventure" /><span data-i18n="roulette.genre.adventure">სათავგადასავლო</span></label>
           </div>
         </div>
 
         <div class="rq-group">
-          <p class="rq-group__label">რა განწყობა გაქვს?</p>
+          <p class="rq-group__label" data-i18n="roulette.mood.label">რა განწყობა გაქვს?</p>
           <div class="rq-chips" role="group" aria-label="განწყობა">
-            <label class="rq-chip"><input type="radio" name="mood" value="any" checked /><span>არაფერი განსაკუთრებული</span></label>
-            <label class="rq-chip"><input type="radio" name="mood" value="fun" /><span>კაი ხასიათზე ვარ</span></label>
-            <label class="rq-chip"><input type="radio" name="mood" value="serious" /><span> ცოტა მოწყენილი ვარ </span></label>
-            <label class="rq-chip"><input type="radio" name="mood" value="emotional" /><span>ემოციებში ვარ</span></label>
+            <label class="rq-chip"><input type="radio" name="mood" value="any" checked /><span data-i18n="roulette.mood.any">არაფერი განსაკუთრებული</span></label>
+            <label class="rq-chip"><input type="radio" name="mood" value="fun" /><span data-i18n="roulette.mood.fun">კაი ხასიათზე ვარ</span></label>
+            <label class="rq-chip"><input type="radio" name="mood" value="serious" /><span data-i18n="roulette.mood.serious">ცოტა მოწყენილი ვარ</span></label>
+            <label class="rq-chip"><input type="radio" name="mood" value="emotional" /><span data-i18n="roulette.mood.emotional">ემოციებში ვარ</span></label>
           </div>
         </div>
 
         <div class="rq-group">
-          <p class="rq-group__label">რომელი ეპოქა?</p>
+          <p class="rq-group__label" data-i18n="roulette.era.label">რომელი ეპოქა?</p>
           <div class="rq-chips" role="group" aria-label="ეპოქა">
-            <label class="rq-chip"><input type="radio" name="era" value="any" checked /><span>ნებისმიერი</span></label>
-            <label class="rq-chip"><input type="radio" name="era" value="classic" /><span>კლასიკური (–1950)</span></label>
-            <label class="rq-chip"><input type="radio" name="era" value="modern" /><span>თანამედროვე (1950+)</span></label>
+            <label class="rq-chip"><input type="radio" name="era" value="any" checked /><span data-i18n="roulette.era.any">ნებისმიერი</span></label>
+            <label class="rq-chip"><input type="radio" name="era" value="classic" /><span data-i18n="roulette.era.classic">კლასიკური (–1950)</span></label>
+            <label class="rq-chip"><input type="radio" name="era" value="modern" /><span data-i18n="roulette.era.modern">თანამედროვე (1950+)</span></label>
           </div>
         </div>
 
@@ -95,7 +96,7 @@
             <path d="M12 3a9 9 0 1 0 9 9" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/>
             <path d="M21 3l-3 3 3 3" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          ამომირჩიე წიგნი!
+          <span data-i18n="roulette.spin.btn">ამომირჩიე წიგნი!</span>
         </button>
       </aside>
 
@@ -110,7 +111,7 @@
         <!-- Loading -->
         <div class="rq-loading" id="rq-loading" hidden>
           <span class="spinner rq-loading__spinner"></span>
-          <p class="rq-loading__text">ვეძებ…</p>
+          <p class="rq-loading__text" data-i18n="roulette.loading">ვეძებ…</p>
         </div>
 
         <!-- Book card -->
@@ -129,9 +130,9 @@
                   <path d="M12 3a9 9 0 1 0 9 9" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/>
                   <path d="M21 3l-3 3 3 3" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                სხვა წიგნი
+                <span data-i18n="roulette.another.btn">სხვა წიგნი</span>
               </button>
-              <a class="btn btn--ghost" id="rq-detail-link" href="#">დეტალების ნახვა →</a>
+              <a class="btn btn--ghost" id="rq-detail-link" href="#" data-i18n="roulette.detail.link">დეტალების ნახვა →</a>
             </div>
           </div>
         </div>
@@ -140,12 +141,12 @@
     </div>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer" data-i18n="footer">
     იმედია საიტი მოგწონთ (მე კეთებისას ძალიან გავერთე) · Tabata's Library · 2026
   </footer>
 
-  
-  <div class="me-corner" title="გამარჯობა! 👋"><img src="assets/me.png" alt="Tabata" /></div>
+
+  <div class="me-corner" data-i18n-title="me.corner" title="გამარჯობა! 👋"><img src="assets/me.png" alt="Tabata" /></div>
   <script type="module" src="js/main.js"></script>
   <script type="module" src="js/roulette.js"></script>
 </body>
