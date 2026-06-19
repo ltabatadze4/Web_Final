@@ -3,13 +3,10 @@
 import { getBookDetails, findFreeRead } from "./api.js";
 import { addToShelf, removeFromShelf, isSaved } from "./storage.js";
 import { t } from "./i18n.js";
-import { t } from "./i18n.js";
 
 const params = new URLSearchParams(window.location.search);
 const book = {
   key:     params.get("key"),
-  title:   params.get("title")  || t("js.detail.unknown.title"),
-  author:  params.get("author") || t("js.detail.unknown.author"),
   title:   params.get("title")  || t("js.detail.unknown.title"),
   author:  params.get("author") || t("js.detail.unknown.author"),
   year:    params.get("year")   || "",
@@ -50,7 +47,6 @@ const subjectsEl = document.querySelector("#detail-subjects");
     }
   } catch (e) {
     descEl.textContent = t("js.detail.desc.error");
-    descEl.textContent = t("js.detail.desc.error");
   }
 })();
 
@@ -87,7 +83,6 @@ addBtn.addEventListener("click", function() {
 
 statusSelect.addEventListener("change", function() {
   if (!isSaved(book.key)) {
-    feedback.textContent = t("js.detail.will.save", { label: getStatusLabel(statusSelect.value) });
     feedback.textContent = t("js.detail.will.save", { label: getStatusLabel(statusSelect.value) });
     feedback.className   = "feedback";
   }

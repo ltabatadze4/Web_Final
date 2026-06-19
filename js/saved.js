@@ -2,7 +2,6 @@
 
 import { getShelf, removeFromShelf, updateStatus, isLoggedIn, getAuth } from "./storage.js";
 import { t } from "./i18n.js";
-import { t } from "./i18n.js";
 
 if (!isLoggedIn()) {
   window.location.href = "login.html?next=saved.html";
@@ -68,7 +67,6 @@ function buildCard(book) {
   const badge = document.createElement("span");
   badge.className = "shelf-card__badge shelf-card__badge--" + book.status;
   badge.textContent = getStatusLabel(book.status);
-  badge.textContent = getStatusLabel(book.status);
   body.appendChild(h3); body.appendChild(p); body.appendChild(badge);
   link.appendChild(img); link.appendChild(body);
 
@@ -88,7 +86,6 @@ function buildCard(book) {
 
   const removeBtn = document.createElement("button");
   removeBtn.className = "btn btn--danger btn--small";
-  removeBtn.textContent = t("js.remove"); removeBtn.type = "button";
   removeBtn.textContent = t("js.remove"); removeBtn.type = "button";
   removeBtn.addEventListener("click", function(e) { e.stopPropagation(); removeFromShelf(book.key); draw(); });
 

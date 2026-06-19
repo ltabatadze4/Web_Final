@@ -2,7 +2,6 @@
 
 import { getAuth, clearAuth } from "./storage.js";
 import { getLang, setLang } from "./i18n.js";
-import { getLang, setLang } from "./i18n.js";
 
 const page      = document.body.dataset.page;
 const guestNav  = document.querySelector("#nav-guest");
