@@ -159,4 +159,5 @@ if (PAGE_MODULES[page]) import(PAGE_MODULES[page]);
 
 ამის წყალობით, მხოლოდ საჭირო გვერდის კოდი იტვირთება.
 
+![მთავარი გვერდის დემო](assets/screenshots/demo.1png)
 ---
