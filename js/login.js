@@ -2,7 +2,6 @@
 
 import { getAuth, saveAuth, clearAuth } from "./storage.js";
 import { t } from "./i18n.js";
-import { t } from "./i18n.js";
 
 const form        = document.querySelector("#login-form");
 const formWrap    = document.querySelector("#login-form-wrap");
@@ -35,7 +34,6 @@ if (logoutBtn) {
   logoutBtn.addEventListener("click", function() {
     clearAuth();
     renderState();
-    feedback.textContent = t("js.login.logout");
     feedback.textContent = t("js.login.logout");
     feedback.className   = "feedback";
   });
