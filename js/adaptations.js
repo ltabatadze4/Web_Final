@@ -4,6 +4,7 @@ import { searchFilmAdaptations } from "./api.js";
 import { getShelf } from "./storage.js";
 import { showError } from "./ui.js";
 import { escapeHtml } from "./utils.js";
+import { t } from "./i18n.js";
 
 const form  = document.querySelector("#adapt-form");
 const input = document.querySelector("#adapt-input");
@@ -35,12 +36,12 @@ if (fromUrl) { input.value = fromUrl; runSearch(fromUrl); }
 async function runSearch(bookTitle) {
   const q = bookTitle.trim();
   if (!q) return;
-  grid.innerHTML = `<div class="status status--loading"><span class="spinner"></span>ეკრანიზაციების ძიება „${escapeHtml(q)}"…</div>`;
+  grid.innerHTML = `<div class="status status--loading"><span class="spinner"></span>${t("js.adapt.loading", { q: escapeHtml(q) })}</div>`;
   try {
     const films = await searchFilmAdaptations(q);
     renderFilms(films, q);
   } catch (err) {
-    showError(grid, "ფილმების ძიება ვერ მოხერხდა. სცადე თავიდან.");
+    showError(grid, t("js.adapt.error"));
     console.error(err);
   }
 }
@@ -50,7 +51,7 @@ function renderFilms(films, bookTitle) {
   if (films.length === 0) {
     const p = document.createElement("p");
     p.className = "empty";
-    p.textContent = `„${bookTitle}"-ის ეკრანიზაცია ვერ მოიძებნა.`;
+    p.textContent = t("js.adapt.no.films", { title: bookTitle });
     grid.appendChild(p); return;
   }
   for (let i = 0; i < films.length; i++) grid.appendChild(buildFilmCard(films[i]));
@@ -65,7 +66,7 @@ function buildFilmCard(film) {
   if (film.poster) {
     const img = document.createElement("img");
     img.className = "film-card__poster"; img.src = film.poster;
-    img.alt = "პოსტერი — " + film.title; img.loading = "lazy";
+    img.alt = film.title; img.loading = "lazy";
     pw.appendChild(img);
   } else {
     const ph = document.createElement("div");
@@ -89,7 +90,7 @@ function buildFilmCard(film) {
     const a = document.createElement("a");
     a.className = "film-card__link"; a.href = film.imdbUrl;
     a.target = "_blank"; a.rel = "noopener noreferrer";
-    a.textContent = "IMDb-ზე ნახვა →";
+    a.textContent = t("js.adapt.imdb");
     body.appendChild(a);
   }
   card.appendChild(body);
