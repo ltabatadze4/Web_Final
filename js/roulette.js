@@ -2,6 +2,8 @@
 
 import { t } from "./i18n.js";
 
+import { t } from "./i18n.js";
+
 const OL     = "https://openlibrary.org";
 const COVERS = "https://covers.openlibrary.org/b/id";
 
@@ -12,7 +14,7 @@ const GENRE_SUBJECTS = {
   romance:    "romance",
   historical: "historical_fiction",
   philosophy: "philosophy",
-  adventure:  "adventure_stories",
+  adventure:  "adventure_stories"
 };
 
 function genreLabel(genre) {
@@ -76,8 +78,10 @@ function showBook(work, genre) {
   coverImg.alt = work.title;
 
   cardEl.querySelector("#rq-genre-tag").textContent  = genreLabel(genre);
+  cardEl.querySelector("#rq-genre-tag").textContent  = genreLabel(genre);
   cardEl.querySelector("#rq-book-title").textContent = work.title;
   cardEl.querySelector("#rq-book-meta").textContent  = author + (work.first_publish_year ? " · " + work.first_publish_year : "");
+  cardEl.querySelector("#rq-book-desc").textContent  = t("js.roulette.loading.desc");
   cardEl.querySelector("#rq-book-desc").textContent  = t("js.roulette.loading.desc");
   cardEl.querySelector("#rq-detail-link").href = "detail.html?" + new URLSearchParams({
     key: work.key, title: work.title, author: author,
@@ -87,6 +91,7 @@ function showBook(work, genre) {
   idleEl.hidden = true; loadingEl.hidden = true; cardEl.hidden = false;
 
   fetchDescription(work.key).then(function(desc) {
+    cardEl.querySelector("#rq-book-desc").textContent = desc || t("js.roulette.no.desc");
     cardEl.querySelector("#rq-book-desc").textContent = desc || t("js.roulette.no.desc");
   });
 }
@@ -108,11 +113,13 @@ async function spin() {
     const works = await fetchBooks(genre, mood, era);
     if (works.length === 0) {
       showIdle(t("js.roulette.no.books"));
+      showIdle(t("js.roulette.no.books"));
       return;
     }
     showBook(works[Math.floor(Math.random() * works.length)], genre);
   } catch (err) {
     console.error(err);
+    showIdle(t("js.roulette.network"));
     showIdle(t("js.roulette.network"));
   } finally {
     spinBtn.disabled = false;

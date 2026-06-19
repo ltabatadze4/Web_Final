@@ -2,13 +2,14 @@
 
 import { getShelf, removeFromShelf, updateStatus, isLoggedIn, getAuth } from "./storage.js";
 import { t } from "./i18n.js";
+import { t } from "./i18n.js";
 
 if (!isLoggedIn()) {
   window.location.href = "login.html?next=saved.html";
   throw new Error("login required");
 }
 
-function getStatusLabel(status) { return t("js.status." + status) || status; }
+function getStatusLabel(s) { return t("js.status." + s) || s; }
 
 const auth    = getAuth();
 const greetEl = document.querySelector("#shelf-greeting-name");
@@ -67,6 +68,7 @@ function buildCard(book) {
   const badge = document.createElement("span");
   badge.className = "shelf-card__badge shelf-card__badge--" + book.status;
   badge.textContent = getStatusLabel(book.status);
+  badge.textContent = getStatusLabel(book.status);
   body.appendChild(h3); body.appendChild(p); body.appendChild(badge);
   link.appendChild(img); link.appendChild(body);
 
@@ -75,9 +77,9 @@ function buildCard(book) {
 
   const select = document.createElement("select");
   select.className = "select";
-  [["want","js.status.want"],["reading","js.status.reading"],["read","js.status.read"]].forEach(function(o) {
+  [["want"],["reading"],["read"]].forEach(function(o) {
     const opt = document.createElement("option");
-    opt.value = o[0]; opt.textContent = t(o[1]);
+    opt.value = o[0]; opt.textContent = getStatusLabel(o[0]);
     if (o[0] === book.status) opt.selected = true;
     select.appendChild(opt);
   });
@@ -86,6 +88,7 @@ function buildCard(book) {
 
   const removeBtn = document.createElement("button");
   removeBtn.className = "btn btn--danger btn--small";
+  removeBtn.textContent = t("js.remove"); removeBtn.type = "button";
   removeBtn.textContent = t("js.remove"); removeBtn.type = "button";
   removeBtn.addEventListener("click", function(e) { e.stopPropagation(); removeFromShelf(book.key); draw(); });
 
@@ -106,7 +109,7 @@ function draw() {
   if (visible.length === 0) {
     const div = document.createElement("div");
     div.className = "empty";
-    div.innerHTML = `<p class="empty__title">${t("js.shelf.empty.title")}</p><p>${t("js.shelf.empty.sub")}</p><a class="btn empty__action" href="index.html">${t("js.shelf.empty.action")}</a>`;
+    div.innerHTML = `<p class="empty__title">${t("js.shelf.empty.title")}</p><p>${t("js.shelf.empty.sub")}</p><a class="btn empty__action" href="index.html">${t("js.shelf.empty.btn")}</a>`;
     grid.appendChild(div);
     return;
   }

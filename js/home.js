@@ -5,6 +5,7 @@ import { getLastSearch, saveLastSearch } from "./storage.js";
 import { renderBooks, showError } from "./ui.js";
 import { debounce, escapeHtml } from "./utils.js";
 import { t } from "./i18n.js";
+import { t } from "./i18n.js";
 
 const form  = document.querySelector("#search-form");
 const input = document.querySelector("#search-input");
@@ -23,16 +24,15 @@ function openBook(book) {
 
 async function runSearch(query) {
   const q = query.trim();
-  if (!q) {
-    showError(grid, t("js.home.empty"));
-    return;
-  }
+  if (!q) { showError(grid, t("js.home.empty")); return; }
   saveLastSearch(q);
+  grid.innerHTML = `<div class="status status--loading"><span class="spinner"></span>${t("js.home.searching", { q: escapeHtml(q) })}</div>`;
   grid.innerHTML = `<div class="status status--loading"><span class="spinner"></span>${t("js.home.searching", { q: escapeHtml(q) })}</div>`;
   try {
     const books = await searchBooks(q);
     renderBooks(grid, books, openBook);
   } catch (err) {
+    showError(grid, t("js.home.error"));
     showError(grid, t("js.home.error"));
     console.error(err);
   }
@@ -40,6 +40,8 @@ async function runSearch(query) {
 
 form.addEventListener("submit", function(e) {
   e.preventDefault();
+  const q = input.value.trim();
+  if (!q) { showError(grid, t("js.home.empty")); return; }
   runSearch(input.value);
 });
 

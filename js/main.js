@@ -2,6 +2,7 @@
 
 import { getAuth, clearAuth } from "./storage.js";
 import { getLang, setLang } from "./i18n.js";
+import { getLang, setLang } from "./i18n.js";
 
 const page      = document.body.dataset.page;
 const guestNav  = document.querySelector("#nav-guest");
@@ -74,10 +75,23 @@ if (burger && nav) {
   });
 }
 
-// ენის გადამრთველი
+// ენის გადართვა
 const langToggle = document.getElementById("lang-toggle");
 if (langToggle) {
   langToggle.addEventListener("click", function() {
     setLang(getLang() === "ka" ? "en" : "ka");
   });
+}
+
+// გვერდის მოდულების dynamic import — ამის გამო HTML-ში მხოლოდ ეს ერთი script ტეგია საჭირო
+const PAGE_MODULES = {
+  home:         "./home.js",
+  adaptations:  "./adaptations.js",
+  saved:        "./saved.js",
+  roulette:     "./roulette.js",
+  detail:       "./detail.js",
+  login:        "./login.js"
+};
+if (PAGE_MODULES[page]) {
+  import(PAGE_MODULES[page]);
 }

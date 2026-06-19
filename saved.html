@@ -25,15 +25,17 @@
         <li><a class="nav__link" href="index.html" data-i18n="nav.search">ძიება</a></li>
         <li><a class="nav__link" href="adaptations.html" data-i18n="nav.adaptations">ეკრანიზაციები</a></li>
         <li><a class="nav__link" href="roulette.html" data-i18n="nav.roulette">ბედის ბორბალი</a></li>
-        <li><a class="nav__link" href="saved.html" data-i18n="nav.library">ჩემი ბიბლიოთეკა</a></li>
+        <li><a class="nav__link" href="saved.html" data-i18n="nav.saved">ჩემი ბიბლიოთეკა</a></li>
         <li id="nav-login-item"><a class="nav__link" href="login.html" data-i18n="nav.login">შესვლა</a></li>
       </ul>
       <div class="nav__user" id="nav-user" hidden>
         <ul class="nav__user-links" role="list">
           <li><span class="nav__user-name" id="nav-user-name"></span></li>
           <li><button class="nav__logout" id="nav-logout" type="button" data-i18n="nav.logout">გასვლა</button></li>
+          <li><button class="nav__logout" id="nav-logout" type="button" data-i18n="nav.logout">გასვლა</button></li>
         </ul>
       </div>
+      <button class="nav__lang" id="lang-toggle" type="button" aria-label="Switch language">EN</button>
       <button class="nav__lang" id="lang-toggle" type="button" aria-label="Switch language">EN</button>
     </nav>
   </header>
@@ -42,6 +44,8 @@
   <div class="shelf-hero">
     <div class="shelf-hero__overlay"></div>
     <div class="shelf-hero__content">
+      <h1 class="shelf-hero__title" id="shelf-heading" data-i18n="saved.hero.title">ჩემი ბიბლიოთეკა</h1>
+      <p class="shelf-hero__sub"><span data-i18n="saved.greeting.before">გამარჯობა, </span><strong id="shelf-greeting-name"></strong><span data-i18n="saved.greeting.after"> — აქ არის შენი შენახული წიგნები.</span></p>
       <h1 class="shelf-hero__title" id="shelf-heading" data-i18n="saved.hero.title">ჩემი ბიბლიოთეკა</h1>
       <p class="shelf-hero__sub"><span data-i18n="saved.greeting.before">გამარჯობა, </span><strong id="shelf-greeting-name"></strong><span data-i18n="saved.greeting.after"> — აქ არის შენი შენახული წიგნები.</span></p>
     </div>
@@ -59,20 +63,24 @@
         <div class="stats-band__item">
           <span class="stats-band__num" id="stat-total">0</span>
           <span class="stats-band__label" data-i18n="saved.stats.total">სულ</span>
+          <span class="stats-band__label" data-i18n="saved.stats.total">სულ</span>
         </div>
         <div class="stats-band__divider" aria-hidden="true"></div>
         <div class="stats-band__item">
           <span class="stats-band__num stats-band__num--want" id="stat-want">0</span>
+          <span class="stats-band__label" data-i18n="saved.stats.want">გადასაკითხი</span>
           <span class="stats-band__label" data-i18n="saved.stats.want">გადასაკითხი</span>
         </div>
         <div class="stats-band__divider" aria-hidden="true"></div>
         <div class="stats-band__item">
           <span class="stats-band__num stats-band__num--reading" id="stat-reading">0</span>
           <span class="stats-band__label" data-i18n="saved.stats.reading">ვკითხულობ</span>
+          <span class="stats-band__label" data-i18n="saved.stats.reading">ვკითხულობ</span>
         </div>
         <div class="stats-band__divider" aria-hidden="true"></div>
         <div class="stats-band__item">
           <span class="stats-band__num stats-band__num--read" id="stat-read">0</span>
+          <span class="stats-band__label" data-i18n="saved.stats.read">წავიკითხე</span>
           <span class="stats-band__label" data-i18n="saved.stats.read">წავიკითხე</span>
         </div>
       </div>
@@ -89,6 +97,10 @@
         <button class="filter-tab" type="button" data-filter="want" data-i18n="saved.filter.want">გადასაკითხი</button>
         <button class="filter-tab" type="button" data-filter="reading" data-i18n="saved.filter.reading">ვკითხულობ</button>
         <button class="filter-tab" type="button" data-filter="read" data-i18n="saved.filter.read">წავიკითხე</button>
+        <button class="filter-tab filter-tab--active" type="button" data-filter="all" data-i18n="saved.filter.all">ყველა</button>
+        <button class="filter-tab" type="button" data-filter="want" data-i18n="saved.filter.want">გადასაკითხი</button>
+        <button class="filter-tab" type="button" data-filter="reading" data-i18n="saved.filter.reading">ვკითხულობ</button>
+        <button class="filter-tab" type="button" data-filter="read" data-i18n="saved.filter.read">წავიკითხე</button>
       </div>
 
       <div class="grid" id="saved-grid" aria-live="polite" aria-label="შენახული წიგნები"></div>
@@ -97,13 +109,14 @@
 
   </main>
 
-  <footer class="site-footer" data-i18n="footer">
+  <footer class="site-footer" data-i18n="footer.text">
     იმედია საიტი მოგწონთ (მე კეთებისას ძალიან გავერთე) · Tabata's Library · 2026
   </footer>
 
 
   <div class="me-corner" data-i18n-title="me.corner" title="გამარჯობა! 👋"><img src="assets/me.png" alt="Tabata" /></div>
+
+  <div class="me-corner" data-i18n-title="me.corner" title="გამარჯობა! 👋"><img src="assets/me.png" alt="Tabata" /></div>
   <script type="module" src="js/main.js"></script>
-  <script type="module" src="js/saved.js"></script>
 </body>
 </html>

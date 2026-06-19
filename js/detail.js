@@ -3,17 +3,20 @@
 import { getBookDetails, findFreeRead } from "./api.js";
 import { addToShelf, removeFromShelf, isSaved } from "./storage.js";
 import { t } from "./i18n.js";
+import { t } from "./i18n.js";
 
 const params = new URLSearchParams(window.location.search);
 const book = {
   key:     params.get("key"),
   title:   params.get("title")  || t("js.detail.unknown.title"),
   author:  params.get("author") || t("js.detail.unknown.author"),
+  title:   params.get("title")  || t("js.detail.unknown.title"),
+  author:  params.get("author") || t("js.detail.unknown.author"),
   year:    params.get("year")   || "",
   coverId: params.get("cover")  || null
 };
 
-function getStatusLabel(status) { return t("detail.status." + status) || status; }
+function getStatusLabel(s) { return t("detail.status." + s) || s; }
 let addedCount = 0;
 
 document.title = book.title + " — Tabata's Library";
@@ -34,8 +37,8 @@ const descEl     = document.querySelector("#detail-desc");
 const subjectsEl = document.querySelector("#detail-subjects");
 
 (async function() {
-  if (!book.key) { descEl.textContent = t("js.detail.load.error"); return; }
-  descEl.innerHTML = t("js.detail.desc.loading");
+  if (!book.key) { descEl.textContent = t("js.detail.loading"); return; }
+  descEl.innerHTML = `<span class="spinner"></span> ${t("js.roulette.loading.desc")}`;
   try {
     const d = await getBookDetails(book.key);
     descEl.textContent = d.description;
@@ -47,6 +50,7 @@ const subjectsEl = document.querySelector("#detail-subjects");
     }
   } catch (e) {
     descEl.textContent = t("js.detail.desc.error");
+    descEl.textContent = t("js.detail.desc.error");
   }
 })();
 
@@ -57,11 +61,11 @@ const feedback     = document.querySelector("#shelf-feedback");
 
 function refreshShelfBtn() {
   if (isSaved(book.key)) {
-    addBtn.textContent = t("detail.remove.btn");
+    addBtn.textContent = t("js.detail.remove.btn");
     addBtn.classList.add("btn--danger");
     statusSelect.disabled = true;
   } else {
-    addBtn.textContent = t("detail.add.btn");
+    addBtn.textContent = t("js.detail.add.btn");
     addBtn.classList.remove("btn--danger");
     statusSelect.disabled = false;
   }
@@ -70,12 +74,12 @@ function refreshShelfBtn() {
 addBtn.addEventListener("click", function() {
   if (isSaved(book.key)) {
     removeFromShelf(book.key);
-    feedback.textContent = t("js.detail.removed");
+    feedback.textContent = t("js.detail.remove.feedback");
     feedback.className   = "feedback";
   } else {
     addToShelf(book, statusSelect.value);
     addedCount++;
-    feedback.textContent = t("js.detail.saved", { count: addedCount });
+    feedback.textContent = t("js.detail.add.feedback", { count: addedCount });
     feedback.className   = "feedback feedback--ok";
   }
   refreshShelfBtn();
@@ -83,6 +87,7 @@ addBtn.addEventListener("click", function() {
 
 statusSelect.addEventListener("change", function() {
   if (!isSaved(book.key)) {
+    feedback.textContent = t("js.detail.will.save", { label: getStatusLabel(statusSelect.value) });
     feedback.textContent = t("js.detail.will.save", { label: getStatusLabel(statusSelect.value) });
     feedback.className   = "feedback";
   }
@@ -92,7 +97,7 @@ refreshShelfBtn();
 
 // Gutenberg - უფასო ვერსია
 const freeBox = document.querySelector("#free-read");
-freeBox.innerHTML = t("js.detail.gutenberg");
+freeBox.innerHTML = `<p class="form__hint"><span class="spinner"></span> ${t("js.detail.free.searching")}</p>`;
 
 (async function() {
   try {
@@ -103,13 +108,13 @@ freeBox.innerHTML = t("js.detail.gutenberg");
       div.className = "free-read";
       const p = document.createElement("p");
       p.className   = "free-read__label";
-      p.textContent = t("js.detail.gutenberg.found");
+      p.textContent = t("js.detail.free.available");
       const row = document.createElement("div");
       row.className = "free-read__row";
       const a = document.createElement("a");
       a.className = "btn"; a.href = free.readUrl;
       a.target = "_blank"; a.rel = "noopener noreferrer";
-      a.textContent = t("js.detail.gutenberg.open");
+      a.textContent = t("js.detail.free.open");
       row.appendChild(a);
       div.appendChild(p); div.appendChild(row);
       freeBox.appendChild(div);

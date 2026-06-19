@@ -2,6 +2,7 @@
 
 import { getAuth, saveAuth, clearAuth } from "./storage.js";
 import { t } from "./i18n.js";
+import { t } from "./i18n.js";
 
 const form        = document.querySelector("#login-form");
 const formWrap    = document.querySelector("#login-form-wrap");
@@ -35,6 +36,7 @@ if (logoutBtn) {
     clearAuth();
     renderState();
     feedback.textContent = t("js.login.logout");
+    feedback.textContent = t("js.login.logout");
     feedback.className   = "feedback";
   });
 }
@@ -45,12 +47,12 @@ form.addEventListener("submit", function(e) {
   const email       = form.email.value.trim();
   const password    = form.password.value;
 
-  if (displayName.length < 2) return showFormError(t("js.login.name.error"));
-  if (!email.includes("@"))   return showFormError(t("js.login.email.error"));
-  if (password.length < 6)    return showFormError(t("js.login.password.error"));
+  if (displayName.length < 2) return showFormError(t("js.login.name.short"));
+  if (!email.includes("@"))   return showFormError(t("js.login.email.invalid"));
+  if (password.length < 6)    return showFormError(t("js.login.password.short"));
 
   saveAuth({ displayName, email, remember: form.remember.checked, signedInAt: Date.now() });
-  feedback.textContent = t("js.login.welcome", { name: displayName });
+  feedback.textContent = t("js.login.success", { name: displayName });
   feedback.className   = "feedback feedback--ok";
   setTimeout(function() { window.location.href = next; }, 900);
 });
