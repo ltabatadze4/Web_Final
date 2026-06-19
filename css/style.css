@@ -296,7 +296,7 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 600; line-height: 1.2; 
 
 .adapt-hero {
   position: relative;
-  background-image: url('../assets/bg-shelf-dark.jpg');
+  background-image: url('../assets/biblioteka.jpg');
   background-size: cover;
   background-position: center 55%;
   overflow: hidden;
@@ -305,7 +305,7 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 600; line-height: 1.2; 
 .adapt-hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, rgba(8,5,2,0.75) 0%, rgba(20,10,4,0.85) 100%);
+  background: linear-gradient(160deg, rgba(8,5,2,0.55) 0%, rgba(20,10,4,0.65) 100%);
 }
 
 .adapt-hero__content {
@@ -323,11 +323,16 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 600; line-height: 1.2; 
   margin: 0 0 10px;
   letter-spacing: -0.03em;
   line-height: 1.12;
-  color: #f5f0e8;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.9), 0 4px 32px rgba(0,0,0,0.7);
 }
 
-.adapt-hero__sub { margin: 0; color: rgba(245,235,215,0.78); font-size: 1rem; }
+.adapt-hero__sub {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1rem;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.85), 0 2px 16px rgba(0,0,0,0.6);
+}
 
 .adapt-hero__wave { position: relative; z-index: 1; line-height: 0; }
 .adapt-hero__wave svg { display: block; width: 100%; height: 56px; }
@@ -687,19 +692,23 @@ body.login-page {
 
 .adapt-sidebar {
   flex: 0 0 400px;
+  align-self: flex-start;
   position: sticky;
-  top: 70px;
+  top: 66px;
   margin-left: -190px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  max-height: calc(100vh - 80px);
 }
 
 .adapt-sidebar__img {
-  
   width: 100%;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
+  border-radius: 0;
+  box-shadow: none;
   object-fit: cover;
-  height: calc(100vh - 120px);
-  max-height: 800px;
+  height: calc(100vh - 80px);
+  max-height: 780px;
+  display: block;
 }
 
 .adapt-content {
