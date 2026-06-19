@@ -159,4 +159,21 @@ if (PAGE_MODULES[page]) import(PAGE_MODULES[page]);
 
 ამის წყალობით, მხოლოდ საჭირო გვერდის კოდი იტვირთება.
 
+## ✨ ფუნქციების ფოტოები (Features)
+  
+  <img src="assets/demo1.png" alt="Search Screen" width="100%">
+  <br>
+  <br>
+  <img src="assets/demo2.png" alt="Search Screen" width="100%"> 
+  <br>
+  <br>
+  <img src="assets/demo3.png" alt="Search Screen" width="100%">
+  <br>
+  <br>
+  <img src="assets/demo4.png" alt="Search Screen" width="100%">
+  <br>
+  <br>
+  <img src="assets/demo5.png" alt="Search Screen" width="100%">  
+
+  
 ---
