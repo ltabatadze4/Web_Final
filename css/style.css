@@ -692,19 +692,23 @@ body.login-page {
 
 .adapt-sidebar {
   flex: 0 0 400px;
+  align-self: flex-start;
   position: sticky;
-  top: 70px;
+  top: 66px;
   margin-left: -190px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  max-height: calc(100vh - 80px);
 }
 
 .adapt-sidebar__img {
-  
   width: 100%;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
+  border-radius: 0;
+  box-shadow: none;
   object-fit: cover;
-  height: calc(100vh - 120px);
-  max-height: 800px;
+  height: calc(100vh - 80px);
+  max-height: 780px;
+  display: block;
 }
 
 .adapt-content {
