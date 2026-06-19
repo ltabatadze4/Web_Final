@@ -1203,6 +1203,64 @@ body.login-page {
 .empty__action { margin-top: 16px; display: inline-flex; }
 
 
+/* login modal */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 36, 48, 0.52);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space);
+  animation: fade-in 0.15s ease;
+}
+
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+.modal {
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  padding: 36px 36px 28px;
+  max-width: 420px;
+  width: 100%;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+  animation: slide-up 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes slide-up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+.modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--muted);
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.modal__close:hover { color: var(--ink); background: var(--surface-2); }
+
+.modal__form { margin-top: 16px; }
+.modal__form .form__row { margin-bottom: 14px; }
+.modal__form .form__input { padding: 10px 13px; font-size: 0.9rem; }
+.modal__form .login-form__submit { width: 100%; margin-top: 4px; font-size: 0.93rem; }
+.modal__form .feedback { display: block; margin-top: 10px; }
+
+@media (max-width: 480px) {
+  .modal { padding: 28px 20px 24px; }
+}
+
+
 /* footer */
 
 .site-footer {
