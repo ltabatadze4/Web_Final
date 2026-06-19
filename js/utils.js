@@ -1,25 +1,20 @@
+// utils.js - სხვადასხვა დამხმარე ფუნქციები
+
+// ძიების დაყოვნება, რომ ყოველ ასოზე API-ს არ ვეძახოთ
 export function debounce(fn, delay) {
   let timer;
-  return (...args) => {
+  return function() {
+    const args = arguments;
     clearTimeout(timer);
-    timer = setTimeout(() => fn(...args), delay);
+    timer = setTimeout(function() {
+      fn.apply(null, args);
+    }, delay);
   };
 }
 
-export function createCounter(start = 0) {
-  let count = start;
-  return {
-    add() { return ++count; },
-    get() { return count; },
-    reset() { count = start; },
-  };
-}
-
+// HTML სიმბოლოების გარდაქმნა, XSS-ის თავიდან ასაცილებლად
 export function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
+  const div = document.createElement("div");
+  div.textContent = String(str);
+  return div.innerHTML;
 }

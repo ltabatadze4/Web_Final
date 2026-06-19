@@ -1,25 +1,64 @@
-// უკვე ავტორიზებული მომხმარებელი — მთავარ გვერდზე გადამისამართება
-if (localStorage.getItem('user')) {
-  window.location.href = 'index.html';
+// login.js - შესვლის/რეგისტრაციის გვერდი
+
+import { getAuth, saveAuth, clearAuth } from "./storage.js";
+
+const form        = document.querySelector("#login-form");
+const formWrap    = document.querySelector("#login-form-wrap");
+const loggedPanel = document.querySelector("#logged-in-panel");
+const loggedName  = document.querySelector("#logged-in-name");
+const logoutBtn   = document.querySelector("#logout-btn");
+const feedback    = document.querySelector("#login-feedback");
+const next        = new URLSearchParams(window.location.search).get("next") || "index.html";
+
+function showFormError(msg) {
+  feedback.textContent = msg;
+  feedback.className   = "feedback feedback--err";
 }
 
-document.getElementById('login-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  const name = document.getElementById('name-input').value.trim();
-  const errorEl = document.getElementById('login-error');
-
-  if (!name) {
-    errorEl.textContent = 'გთხოვთ შეიყვანოთ სახელი.';
-    errorEl.hidden = false;
-    return;
+function renderState() {
+  const auth = getAuth();
+  if (auth) {
+    if (formWrap) formWrap.hidden = true;
+    if (form)     form.hidden     = true;
+    loggedPanel.hidden     = false;
+    loggedName.textContent = auth.displayName || auth.email;
+  } else {
+    if (formWrap) formWrap.hidden = false;
+    if (form)     form.hidden     = false;
+    loggedPanel.hidden = true;
   }
+}
 
-  errorEl.hidden = true;
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", function() {
+    clearAuth();
+    renderState();
+    feedback.textContent = "გამოხვედი სისტემიდან.";
+    feedback.className   = "feedback";
+  });
+}
 
-  // მომხმარებლის სახელი ინახება localStorage-ში, სეტდება სესიური cookie
-  localStorage.setItem('user', name);
-  document.cookie = 'authorized=true; path=/';
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+  const displayName = form.displayName.value.trim();
+  const email       = form.email.value.trim();
+  const password    = form.password.value;
 
-  window.location.href = 'index.html';
+  if (displayName.length < 2) return showFormError("სახელი უნდა იყოს მინიმუმ 2 სიმბოლო.");
+  if (!email.includes("@"))   return showFormError("შეიყვანე სწორი ელფოსტა.");
+  if (password.length < 6)    return showFormError("პაროლი უნდა იყოს მინიმუმ 6 სიმბოლო.");
+
+  saveAuth({ displayName, email, remember: form.remember.checked, signedInAt: Date.now() });
+  feedback.textContent = "გამარჯობა, " + displayName + "! გადამისამართება…";
+  feedback.className   = "feedback feedback--ok";
+  setTimeout(function() { window.location.href = next; }, 900);
 });
+
+form.addEventListener("input", function() {
+  if (feedback.classList.contains("feedback--err")) {
+    feedback.textContent = "";
+    feedback.className   = "feedback";
+  }
+});
+
+renderState();

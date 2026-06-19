@@ -1,4 +1,4 @@
-// storage.js — localStorage helpers
+// storage.js - localStorage-ში მონაცემების შენახვა და წაკითხვა
 
 const SHELF_KEY       = "tabata_library_shelf";
 const LAST_SEARCH_KEY = "tabata_library_last_search";
@@ -7,31 +7,68 @@ const AUTH_KEY        = "tabata_library_auth";
 export function getShelf() {
   const raw = localStorage.getItem(SHELF_KEY);
   if (!raw) return [];
-  try { return JSON.parse(raw); } catch { return []; }
+  try {
+    return JSON.parse(raw);
+  } catch (e) {
+    return [];
+  }
 }
 
 function saveShelf(books) {
   localStorage.setItem(SHELF_KEY, JSON.stringify(books));
 }
 
-export function addToShelf(book, status = "want") {
+export function addToShelf(book, status) {
+  if (!status) status = "want";
   const shelf = getShelf();
-  if (shelf.some((b) => b.key === book.key)) return false;
-  shelf.push({ ...book, status, addedAt: Date.now() });
+
+  // ვამოწმებთ, ამ წიგნს ხომ არ ვინახავთ უკვე
+  for (let i = 0; i < shelf.length; i++) {
+    if (shelf[i].key === book.key) return false;
+  }
+
+  const entry = {
+    key:      book.key,
+    title:    book.title,
+    author:   book.author,
+    year:     book.year,
+    coverId:  book.coverId,
+    editions: book.editions,
+    status:   status,
+    addedAt:  Date.now()
+  };
+  shelf.push(entry);
   saveShelf(shelf);
   return true;
 }
 
 export function removeFromShelf(key) {
-  saveShelf(getShelf().filter((b) => b.key !== key));
+  const shelf   = getShelf();
+  const updated = [];
+  for (let i = 0; i < shelf.length; i++) {
+    if (shelf[i].key !== key) {
+      updated.push(shelf[i]);
+    }
+  }
+  saveShelf(updated);
 }
 
-export function updateStatus(key, status) {
-  saveShelf(getShelf().map((b) => (b.key === key ? { ...b, status } : b)));
+export function updateStatus(key, newStatus) {
+  const shelf = getShelf();
+  for (let i = 0; i < shelf.length; i++) {
+    if (shelf[i].key === key) {
+      shelf[i].status = newStatus;
+    }
+  }
+  saveShelf(shelf);
 }
 
 export function isSaved(key) {
-  return getShelf().some((b) => b.key === key);
+  const shelf = getShelf();
+  for (let i = 0; i < shelf.length; i++) {
+    if (shelf[i].key === key) return true;
+  }
+  return false;
 }
 
 export function getLastSearch() {
@@ -44,7 +81,8 @@ export function saveLastSearch(q) {
 
 export function getAuth() {
   const raw = localStorage.getItem(AUTH_KEY);
-  return raw ? JSON.parse(raw) : null;
+  if (!raw) return null;
+  return JSON.parse(raw);
 }
 
 export function saveAuth(auth) {
@@ -56,5 +94,7 @@ export function clearAuth() {
 }
 
 export function isLoggedIn() {
-  return getAuth() !== null;
+  const auth = getAuth();
+  if (auth === null) return false;
+  return true;
 }
